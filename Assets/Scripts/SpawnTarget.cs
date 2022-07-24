@@ -5,15 +5,16 @@ using UnityEngine;
 public class SpawnTarget : MonoBehaviour
 {
     public GameObject target;
+    private Vector2 pozycja;
+    public int iloscCelow;
     void Start()
     {
-        //Stworz cel: prefab, pozycja, obrot
-        Instantiate(target, new Vector2 (0,0), Quaternion.identity);
-    }
+        for (int i=0; i<iloscCelow; i++)
+        {
+            pozycja = new Vector2(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f));
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            //Stworz cel: prefab, pozycja, obrot
+            Instantiate(target, pozycja, Quaternion.identity);
+        }
     }
 }

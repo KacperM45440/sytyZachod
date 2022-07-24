@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetScript : MonoBehaviour
+public class BackgroundScript : MonoBehaviour
 {
-  
     // Start is called before the first frame update
     void Start()
     {
@@ -14,13 +13,11 @@ public class TargetScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void OnMouseDown()
     {
-        Debug.Log("kliku klik");
-        Destroy(gameObject);
-        WinCheck.Instance.Clicked();
+        Debug.Log("hihi nie trafiles lalalala");
     }
 }

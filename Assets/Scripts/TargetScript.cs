@@ -20,7 +20,7 @@ public class TargetScript : MonoBehaviour
         //timeLeft -= Time.deltaTime;
         if (Vector2.Distance(rbRef.position,targetDirection) <= 0.1f)
         {
-            targetDirection = rbRef.position + new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+            targetDirection = rbRef.position + new Vector2(Random.Range(-3f, 3f), Random.Range(-3f, 3f));
             // targetDirection = new Vector2(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f)).normalized;
             timeLeft += directionTime;
         }
@@ -37,5 +37,17 @@ public class TargetScript : MonoBehaviour
         Debug.Log("kliku klik");
         Destroy(gameObject);
         WinCheck.Instance.Clicked();
+    }
+    
+    public void Bounce(bool horizontally)
+    {
+        if (horizontally)
+        {
+            targetDirection = rbRef.position + new Vector2(rbRef.position.x - targetDirection.x, 0);
+        }
+        else
+        {
+            targetDirection = rbRef.position + new Vector2(0, rbRef.position.y - targetDirection.y);
+        }
     }
 }

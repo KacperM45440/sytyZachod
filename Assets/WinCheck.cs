@@ -21,7 +21,7 @@ public class WinCheck : MonoBehaviour
             _instance = this;
         }
     }
-
+    //przeczytac o serializacji zmiennych
     [HideInInspector] public int targetCounter;
     private SpawnTarget spawnRef;
     void Start()

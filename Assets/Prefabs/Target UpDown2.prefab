@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4074013164484770167, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
       propertyPath: speed
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4074013164484770167, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
       propertyPath: animations.Array.size

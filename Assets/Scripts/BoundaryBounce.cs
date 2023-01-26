@@ -10,7 +10,8 @@ public class BoundaryBounce : MonoBehaviour
     {
         if (collision.CompareTag("TargetTag"))
         {
-            collision.GetComponent<TargetScript>().Bounce(isHorizontal);
+            Debug.Log("porownalem");
+            GetComponent<TargetScript>().Bounce(isHorizontal);
         }
     }
 }

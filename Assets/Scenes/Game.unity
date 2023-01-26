@@ -135,9 +135,9 @@ GameObject:
   - component: {fileID: 244836126}
   - component: {fileID: 244836128}
   - component: {fileID: 244836129}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (1)
-  m_TagString: Untagged
+  m_TagString: BorderTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -219,7 +219,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -260,9 +260,9 @@ GameObject:
   - component: {fileID: 429698465}
   - component: {fileID: 429698467}
   - component: {fileID: 429698468}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (3)
-  m_TagString: Untagged
+  m_TagString: BorderTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -344,7 +344,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -737,9 +737,9 @@ GameObject:
   - component: {fileID: 1003481054}
   - component: {fileID: 1003481056}
   - component: {fileID: 1003481057}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (4)
-  m_TagString: Untagged
+  m_TagString: BorderTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -821,7 +821,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -898,9 +898,9 @@ GameObject:
   - component: {fileID: 1547467065}
   - component: {fileID: 1547467067}
   - component: {fileID: 1547467068}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (2)
-  m_TagString: Untagged
+  m_TagString: BorderTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -982,7 +982,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

@@ -8,12 +8,16 @@ public class TargetMovement : MonoBehaviour
     public float speed = 1;
     
     private int life;
+    private Vector2 targetDirection;
+    private Rigidbody2D rbRef;
     [HideInInspector] public Animator animatorRef;
 
     void Start()
     {
         animatorRef = GetComponent<Animator>();
-        life = animations.Count + 1;   
+        life = animations.Count + 1;
+        rbRef = GetComponent<Rigidbody2D>();
+        targetDirection = rbRef.position + new Vector2(1, 1);
     }
 
     public void FinishedMovement()
@@ -31,14 +35,23 @@ public class TargetMovement : MonoBehaviour
         }
         animatorRef.SetTrigger(animations[animations.Count - life]);
     }
+    public void Bounce(bool horizontally)
+    {
+        if (horizontally)
+        {
+            targetDirection = rbRef.position + new Vector2(rbRef.position.x - targetDirection.x, 0);
+        }
+        else
+        {
+            targetDirection = rbRef.position + new Vector2(0, rbRef.position.y - targetDirection.y);
+        }
+    }
 
     //zosta³ klikniêty, wiêc gra animacjê "zniszczenia"
     private void OnMouseDown()
     {
         //zmienia prêdkoœæ na domyœln¹ dla animacji niszczenia
         animatorRef.speed = 1;
-
-        Debug.Log("kliku klik");
         WinCheck.Instance.Clicked();
         life = 0;
         animatorRef.SetTrigger("Destroy");

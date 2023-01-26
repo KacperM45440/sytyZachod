@@ -6,12 +6,13 @@ public class BoundaryBounce : MonoBehaviour
 {
     public bool isHorizontal;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("TargetTag"))
         {
             Debug.Log("porownalem");
-            GetComponent<TargetScript>().Bounce(isHorizontal);
+            GameObject target = collision.gameObject;
+            target.GetComponent<TargetMovement>().Bounce(isHorizontal);
         }
     }
 }

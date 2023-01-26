@@ -34,20 +34,7 @@ public class TargetScript : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("kliku klik");
-        Destroy(gameObject);
         WinCheck.Instance.Clicked();
-    }
-    
-    public void Bounce(bool horizontally)
-    {
-        if (horizontally)
-        {
-            targetDirection = rbRef.position + new Vector2(rbRef.position.x - targetDirection.x, 0);
-        }
-        else
-        {
-            targetDirection = rbRef.position + new Vector2(0, rbRef.position.y - targetDirection.y);
-        }
+        Destroy(gameObject);
     }
 }

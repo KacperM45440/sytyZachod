@@ -9,7 +9,7 @@ public class BoundariesKeeper : MonoBehaviour
     void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        targetRadius = transform.GetComponent<SpriteRenderer>().bounds.size.x; // /2;
+        targetRadius = transform.GetComponent<SpriteRenderer>().bounds.size.x*2;
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class BoundariesKeeper : MonoBehaviour
         var pos = Camera.main.WorldToScreenPoint(transform.position);
 
         bool outOfBounds = !Screen.safeArea.Contains(pos);
-
+        Debug.Log(Screen.safeArea);
         if (outOfBounds)
         {
             Debug.Log("Malpa w kosmosie");

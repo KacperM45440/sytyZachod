@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 244836126}
   - component: {fileID: 244836128}
   - component: {fileID: 244836129}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Square (1)
   m_TagString: BorderTag
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1128443122}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &244836128
 BoxCollider2D:
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 429698465}
   - component: {fileID: 429698467}
   - component: {fileID: 429698468}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Square (3)
   m_TagString: BorderTag
   m_Icon: {fileID: 0}
@@ -332,7 +332,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1128443122}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &429698467
 BoxCollider2D:
@@ -503,8 +503,8 @@ GameObject:
   - component: {fileID: 606154036}
   - component: {fileID: 606154039}
   - component: {fileID: 606154038}
-  m_Layer: 6
-  m_Name: Square
+  m_Layer: 0
+  m_Name: Tlo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -570,12 +570,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606154035}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -6.214674}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 22.241867, y: 10.448928, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1128443122}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &606154038
 MonoBehaviour:
@@ -737,7 +737,7 @@ GameObject:
   - component: {fileID: 1003481054}
   - component: {fileID: 1003481056}
   - component: {fileID: 1003481057}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Square (4)
   m_TagString: BorderTag
   m_Icon: {fileID: 0}
@@ -809,7 +809,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1128443122}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1003481056
 BoxCollider2D:
@@ -859,9 +859,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1128443122}
+  - component: {fileID: 1128443123}
   m_Layer: 0
   m_Name: Granice
-  m_TagString: Untagged
+  m_TagString: BorderTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -878,14 +879,26 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 606154037}
   - {fileID: 244836127}
   - {fileID: 1547467066}
   - {fileID: 429698466}
   - {fileID: 1003481055}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1128443123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128443121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7506a1e797384f0468005f839fe76e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHorizontal: 0
 --- !u!1 &1547467064
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,7 +911,7 @@ GameObject:
   - component: {fileID: 1547467065}
   - component: {fileID: 1547467067}
   - component: {fileID: 1547467068}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Square (2)
   m_TagString: BorderTag
   m_Icon: {fileID: 0}
@@ -970,7 +983,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1128443122}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1547467067
 BoxCollider2D:

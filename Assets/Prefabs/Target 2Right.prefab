@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &455896303737361573
+--- !u!1001 &5289858196708165114
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,28 +8,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4074013164484770167, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
-      propertyPath: speed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4074013164484770167, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
       propertyPath: animations.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4074013164484770167, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
       propertyPath: animations.Array.data[0]
-      value: Spinny
+      value: Right
       objectReference: {fileID: 0}
     - target: {fileID: 4074013164484770167, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
       propertyPath: animations.Array.data[1]
-      value: Spinny
-      objectReference: {fileID: 0}
-    - target: {fileID: 4074013164484770167, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
-      propertyPath: animations.Array.data[2]
-      value: Down
+      value: Right
       objectReference: {fileID: 0}
     - target: {fileID: 8210039709605267988, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
       propertyPath: m_Name
-      value: Target Spinny
+      value: Target 2Right
       objectReference: {fileID: 0}
     - target: {fileID: 8210039709605267990, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
       propertyPath: m_RootOrder
@@ -37,11 +29,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8210039709605267990, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.805201
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8210039709605267990, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.59909004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8210039709605267990, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
       propertyPath: m_LocalPosition.z

@@ -27,8 +27,8 @@ public class SpawnTarget : MonoBehaviour
         yield return new WaitForSeconds(1);
         for (int i = 0; i < iloscCelow; i++)
         {
-            pozycja = new Vector2(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f));
-
+            pozycja = new Vector2(Random.Range(4.0f, 12.0f), Random.Range(-1.25f, 1.0f));
+            Debug.Log(pozycja);
             //Stworz cel: prefab, pozycja, obrot
             int randomTarget = Random.Range(0, targets.Count);
             Instantiate(targets[randomTarget], pozycja, Quaternion.identity);

@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 7940097684146443789}
   - component: {fileID: 4074013164484770167}
   - component: {fileID: 8610668642954404488}
-  - component: {fileID: 4298684443816527669}
   m_Layer: 0
   m_Name: TargetBaby
   m_TagString: TargetTag
@@ -46,7 +45,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1880026639097836484}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -175,19 +174,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6009cdc6d8e0ace4b8f3457dc4d987c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4298684443816527669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880026639097836484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1e0a148f72c5a246adfc92e61717060, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetSpeed: 1
 --- !u!1 &8210039709605267988
 GameObject:
   m_ObjectHideFlags: 0

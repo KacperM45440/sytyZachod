@@ -27,6 +27,10 @@ PrefabInstance:
       propertyPath: animations.Array.data[3]
       value: Down
       objectReference: {fileID: 0}
+    - target: {fileID: 4074013164484770167, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
+      propertyPath: animations.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8210039709605267988, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
       propertyPath: m_Name
       value: Target UpDown2

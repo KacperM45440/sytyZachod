@@ -17,7 +17,7 @@ public class TargetMovement : MonoBehaviour
         animatorRef = GetComponent<Animator>();
         life = animations.Count + 1;
         rbRef = GetComponent<Rigidbody2D>();
-        targetDirection = rbRef.position + new Vector2(1, 1);
+        //targetDirection = rbRef.position + new Vector2(1, 1);
     }
 
     public void FinishedMovement()
@@ -39,11 +39,11 @@ public class TargetMovement : MonoBehaviour
     {
         if (horizontally)
         {
-            targetDirection = rbRef.position + new Vector2(rbRef.position.x - targetDirection.x, 0);
+            //targetDirection = rbRef.position + new Vector2(rbRef.position.x - targetDirection.x, 0);
         }
         else
         {
-            targetDirection = rbRef.position + new Vector2(0, rbRef.position.y - targetDirection.y);
+            //targetDirection = rbRef.position + new Vector2(0, rbRef.position.y - targetDirection.y);
         }
     }
 

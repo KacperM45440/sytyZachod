@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WinCheck : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class WinCheck : MonoBehaviour
     
     private static WinCheck _instance;
     public static WinCheck Instance { get { return _instance; } }
+
+    public TMP_Text score;
 
 
     private void Awake()
@@ -35,7 +39,9 @@ public class WinCheck : MonoBehaviour
 
     public void Clicked()
     {
+        Debug.Log("policzylem");
         targetCounter++;
+        score.text = "TARGETS HIT: " + targetCounter;
         Checker();
     }
     public void Checker()

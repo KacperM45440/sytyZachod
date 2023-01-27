@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class BackgroundScript : MonoBehaviour
 {
+    private GunScript gun;
+    public GameObject kontroler;
     // Start is called before the first frame update
     void Start()
     {
-        
+        gun = kontroler.GetComponent<GunScript>();
     }
 
     // Update is called once per frame
@@ -18,6 +20,6 @@ public class BackgroundScript : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("hihi nie trafiles lalalala");
+        gun.ShotFired();
     }
 }

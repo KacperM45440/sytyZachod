@@ -23,7 +23,6 @@ public class BoundariesKeeper : MonoBehaviour
         var pos = Camera.main.WorldToScreenPoint(transform.position);
 
         bool outOfBounds = !Screen.safeArea.Contains(pos);
-        Debug.Log(Screen.safeArea);
         if (outOfBounds)
         {
             Debug.Log("Malpa w kosmosie");

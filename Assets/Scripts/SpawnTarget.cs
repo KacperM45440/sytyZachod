@@ -30,7 +30,6 @@ public class SpawnTarget : MonoBehaviour
 
             //zamienic losowe generowanie na liste z pozycjami (na zasadzie leveli)
             pozycja = new Vector2(Random.Range(4.0f, 12.0f), Random.Range(-1.25f, 1.0f));
-            Debug.Log(pozycja);
             //Stworz cel: prefab, pozycja, obrot
             int randomTarget = Random.Range(0, targets.Count);
             Instantiate(targets[randomTarget], pozycja, Quaternion.identity);

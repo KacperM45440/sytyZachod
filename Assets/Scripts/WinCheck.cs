@@ -7,10 +7,11 @@ using UnityEngine.UI;
 public class WinCheck : MonoBehaviour
 {
     //Tworzymy singletona samego siebie w celu mozliwosci odnoszenia sie do skryptu
-    
     private static WinCheck _instance;
     public static WinCheck Instance { get { return _instance; } }
-
+    //przeczytac o serializacji zmiennych
+    [HideInInspector] public int targetCounter;
+    public SpawnTarget spawnRef;
     public TMP_Text score;
 
 
@@ -25,21 +26,12 @@ public class WinCheck : MonoBehaviour
             _instance = this;
         }
     }
-    //przeczytac o serializacji zmiennych
-    [HideInInspector] public int targetCounter;
-    private SpawnTarget spawnRef;
     void Start()
-    {
-        spawnRef = GetComponent<SpawnTarget>();
-    }
-
-    void Update()
     {
     }
 
     public void Clicked()
-    {
-        Debug.Log("policzylem");
+    { 
         targetCounter++;
         score.text = "TARGETS HIT: " + targetCounter;
         Checker();

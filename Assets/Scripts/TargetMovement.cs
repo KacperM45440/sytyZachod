@@ -6,17 +6,20 @@ public class TargetMovement : MonoBehaviour
 {
     public List<string> animations = new List<string>();
     public float speed = 1;
-    
+    private GunScript gun;
+    public GameObject kontroler;
     private int life;
     private Vector2 targetDirection;
-    private Rigidbody2D rbRef;
+    //private Rigidbody2D rbRef;
     [HideInInspector] public Animator animatorRef;
 
     void Start()
     {
         animatorRef = GetComponent<Animator>();
         life = animations.Count + 1;
-        rbRef = GetComponent<Rigidbody2D>();
+        kontroler = GameObject.Find("GameController");
+        gun = kontroler.GetComponent<GunScript>();
+        //rbRef = GetComponent<Rigidbody2D>();
         //targetDirection = rbRef.position + new Vector2(1, 1);
     }
 
@@ -50,11 +53,15 @@ public class TargetMovement : MonoBehaviour
     //zosta³ klikniêty, wiêc gra animacjê "zniszczenia"
     private void OnMouseDown()
     {
-        //zmienia prêdkoœæ na domyœln¹ dla animacji niszczenia
-        animatorRef.speed = 1;
-        WinCheck.Instance.Clicked();
-        life = 0;
-        animatorRef.SetTrigger("Destroy");
+        if (gun.readyToFire)
+        {
+            gun.ShotFired();
+            //zmienia prêdkoœæ na domyœln¹ dla animacji niszczenia
+            animatorRef.speed = 1;
+            WinCheck.Instance.Clicked();
+            life = 0;
+            animatorRef.SetTrigger("Destroy");
+        }
     }
 
     //ten kod odpala animacja zniszczenia i znikniêcia

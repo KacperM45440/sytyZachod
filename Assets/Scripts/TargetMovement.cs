@@ -5,7 +5,7 @@ using UnityEngine;
 public class TargetMovement : MonoBehaviour
 {
     public List<string> animations = new List<string>();
-    public float speed = 1;
+    public float speed = 1f;
     private GunScript gun;
     public GameObject kontroler;
     private int life;

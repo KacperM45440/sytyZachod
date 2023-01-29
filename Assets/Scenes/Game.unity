@@ -839,6 +839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7202ef264fc6bc7418c24d04217a1846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  readyToFire: 0
   ammoCounter: {fileID: 2068444536}
 --- !u!114 &1072985837
 MonoBehaviour:
@@ -1368,6 +1369,7 @@ MonoBehaviour:
   - {fileID: 2424376632357738398, guid: 4b7a4e43b47137742a23b37965dc6f57, type: 3}
   - {fileID: 4657560046868842656, guid: 0d73e909296fa1642a573d45c97489f1, type: 3}
   - {fileID: 4073138208456904686, guid: cfdcf3c528903b946892b340ac546a02, type: 3}
+  levelSpeed: 5
   target: {fileID: 8210039709605267988, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
   iloscCelow: 30
 --- !u!4 &1897651784

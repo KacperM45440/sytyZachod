@@ -6,6 +6,8 @@ public class SpawnTarget : MonoBehaviour
 {
     public List<GameObject> targets = new List<GameObject>();
     private LevelData chosenLevel;
+    private TargetMovement movementRef;
+    public float levelSpeed = 15f;
     public GameObject target;
     private Vector2 pozycja;
     public int iloscCelow;
@@ -21,6 +23,12 @@ public class SpawnTarget : MonoBehaviour
             Instantiate(targets[randomTarget], pozycja, Quaternion.identity);
         }*/
         chosenLevel = new();
+        foreach (GameObject t in targets)
+        {
+            t.GetComponentInChildren<TargetMovement>().speed = levelSpeed;
+        }
+        //movementRef = target.GetComponentInChildren<TargetMovement>();
+        //movementRef.speed = levelSpeed;
         StartCoroutine(SpawnerCoroutine());
     }
 
@@ -34,7 +42,7 @@ public class SpawnTarget : MonoBehaviour
             pozycja = new Vector2((chosenLevel.finishedTable[i].locationX), (chosenLevel.finishedTable[i].locationY));
             //Stworz cel: numer prefabu (animacji), pozycja, obrot
             Instantiate(targets[chosenLevel.finishedTable[i].targetType], pozycja, Quaternion.identity);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(chosenLevel.finishedTable[i].delay);
         }
     }
 

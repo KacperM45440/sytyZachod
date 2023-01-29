@@ -8,7 +8,7 @@ public class GunScript : MonoBehaviour
     public bool readyToFire;
     int maxAmmo = 6;
     int currentAmmo;
-    float reloadTime = 1.5f;
+    float reloadTime = 1.25f;
 
     public TMP_Text ammoCounter;
 

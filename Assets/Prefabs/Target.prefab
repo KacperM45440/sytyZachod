@@ -161,6 +161,7 @@ MonoBehaviour:
   animations:
   - Up
   speed: 1
+  kontroler: {fileID: 0}
   animatorRef: {fileID: 0}
 --- !u!114 &8610668642954404488
 MonoBehaviour:

@@ -31,13 +31,13 @@ public class GunScript : MonoBehaviour
     {
         if (readyToFire)
         {
+            currentAmmo--;
+            ammoCounter.text = "CURRENT AMMO: " + currentAmmo;
             if (currentAmmo <= 0)
             {
                 ReloadGun();
                 return;
             }
-            currentAmmo--;
-            ammoCounter.text = "CURRENT AMMO: " + currentAmmo;
         }
     }
 
@@ -51,6 +51,7 @@ public class GunScript : MonoBehaviour
     IEnumerator TimeOut()
     {
         yield return new WaitForSeconds(reloadTime);
+        ammoCounter.text = "CURRENT AMMO: " + currentAmmo;
         readyToFire = true;
     }
 }

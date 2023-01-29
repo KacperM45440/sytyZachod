@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnTarget : MonoBehaviour
 {
     public List<GameObject> targets = new List<GameObject>();
+    private LevelData chosenLevel;
     public GameObject target;
     private Vector2 pozycja;
     public int iloscCelow;
@@ -19,20 +20,20 @@ public class SpawnTarget : MonoBehaviour
             int randomTarget = Random.Range(0, targets.Count);
             Instantiate(targets[randomTarget], pozycja, Quaternion.identity);
         }*/
+        chosenLevel = new();
         StartCoroutine(SpawnerCoroutine());
     }
 
     IEnumerator SpawnerCoroutine()
     {
+        chosenLevel.Level1();
         yield return new WaitForSeconds(1);
         for (int i = 0; i < iloscCelow; i++)
         {
-
-            //zamienic losowe generowanie na liste z pozycjami (na zasadzie leveli)
-            pozycja = new Vector2(Random.Range(4.0f, 12.0f), Random.Range(-1.25f, 1.0f));
-            //Stworz cel: prefab, pozycja, obrot
-            int randomTarget = Random.Range(0, targets.Count);
-            Instantiate(targets[randomTarget], pozycja, Quaternion.identity);
+            //pozycja celu okreslana jest recznie poprzez wpis do tabeli znajdujacej sie w klasie LevelData.cs
+            pozycja = new Vector2((chosenLevel.finishedTable[i].locationX), (chosenLevel.finishedTable[i].locationY));
+            //Stworz cel: numer prefabu (animacji), pozycja, obrot
+            Instantiate(targets[chosenLevel.finishedTable[i].targetType], pozycja, Quaternion.identity);
             yield return new WaitForSeconds(1);
         }
     }

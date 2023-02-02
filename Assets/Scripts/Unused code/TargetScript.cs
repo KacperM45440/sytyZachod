@@ -15,13 +15,15 @@ public class TargetScript : MonoBehaviour
         targetDirection = rbRef.position + new Vector2(1, 1);
     }
 
+    // Stare kawa³ki kodu odpowiedzialne za poruszanie celem.
+    // Obecnie cele nie s¹ poruszane wy³¹cznie kodem, poniewa¿ korzystaj¹ równie¿ z animacji, które k³óci³y siê z poni¿szymi funkcjami.
+
     private void Update()
     {
-        //timeLeft -= Time.deltaTime;
         if (Vector2.Distance(rbRef.position,targetDirection) <= 0.1f)
         {
             targetDirection = rbRef.position + new Vector2(Random.Range(-3f, 3f), Random.Range(-3f, 3f));
-            // targetDirection = new Vector2(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f)).normalized;
+            //targetDirection = new Vector2(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f)).normalized;
             timeLeft += directionTime;
         }
     }

@@ -6,20 +6,15 @@ public class BackgroundScript : MonoBehaviour
 {
     private GunScript gun;
     public GameObject kontroler;
-    // Start is called before the first frame update
+
     void Start()
     {
         gun = kontroler.GetComponent<GunScript>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnMouseDown()
     {
+        //Jako ze mozna nie trafic celu, klikniecie w tlo powoduje wystrzelenie (i zmarnowanie) pocisku
         gun.ShotFired();
     }
 }

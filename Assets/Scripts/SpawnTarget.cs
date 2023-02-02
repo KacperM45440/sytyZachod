@@ -4,31 +4,22 @@ using UnityEngine;
 
 public class SpawnTarget : MonoBehaviour
 {
+    // Prefab celu i animacje przypisywane sa w edytorze 
     public List<GameObject> targets = new List<GameObject>();
     private LevelData chosenLevel;
-    private TargetMovement movementRef;
-    public float levelSpeed = 15f;
+    public float levelSpeed;
     public GameObject target;
     private Vector2 pozycja;
     public int iloscCelow;
+    
     void Start()
     {
-        /*
-        for (int i=0; i<iloscCelow; i++)
-        {
-            pozycja = new Vector2(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f));
-
-            //Stworz cel: prefab, pozycja, obrot
-            int randomTarget = Random.Range(0, targets.Count);
-            Instantiate(targets[randomTarget], pozycja, Quaternion.identity);
-        }*/
+        // Za³aduj dane celów z poziomu, nadaj odpowiednia im predkosc a nastepnie rozpocznij proces tworzenia celów w grze
         chosenLevel = new();
         foreach (GameObject t in targets)
         {
             t.GetComponentInChildren<TargetMovement>().speed = levelSpeed;
         }
-        //movementRef = target.GetComponentInChildren<TargetMovement>();
-        //movementRef.speed = levelSpeed;
         StartCoroutine(SpawnerCoroutine());
     }
 
@@ -38,9 +29,9 @@ public class SpawnTarget : MonoBehaviour
         yield return new WaitForSeconds(1);
         for (int i = 0; i < iloscCelow; i++)
         {
-            //pozycja celu okreslana jest recznie poprzez wpis do tabeli znajdujacej sie w klasie LevelData.cs
+            // Pozycja celu okreslana jest recznie poprzez wpis do tabeli znajdujacej sie w klasie LevelData.cs
             pozycja = new Vector2((chosenLevel.finishedTable[i].locationX), (chosenLevel.finishedTable[i].locationY));
-            //Stworz cel: numer prefabu (animacji), pozycja, obrot
+            // Stworz cel: numer prefabu (animacji), pozycja, obrot
             Instantiate(targets[chosenLevel.finishedTable[i].targetType], pozycja, Quaternion.identity);
             yield return new WaitForSeconds(chosenLevel.finishedTable[i].delay);
         }

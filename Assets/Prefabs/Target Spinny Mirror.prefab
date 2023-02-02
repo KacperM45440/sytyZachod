@@ -1,43 +1,39 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5785707347794943370
+--- !u!1001 &5392165126461745985
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4074013164484770167, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
-      propertyPath: speed
-      value: 2
+    - target: {fileID: 2989138070082970419, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989138070082970419, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4074013164484770167, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
       propertyPath: animations.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4074013164484770167, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
       propertyPath: animations.Array.data[0]
-      value: Up
+      value: Spinny Mirror
       objectReference: {fileID: 0}
     - target: {fileID: 4074013164484770167, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
       propertyPath: animations.Array.data[1]
-      value: Down
+      value: Spinny Mirror
       objectReference: {fileID: 0}
     - target: {fileID: 4074013164484770167, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
       propertyPath: animations.Array.data[2]
       value: Up
       objectReference: {fileID: 0}
-    - target: {fileID: 4074013164484770167, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
-      propertyPath: animations.Array.data[3]
-      value: Down
-      objectReference: {fileID: 0}
-    - target: {fileID: 4074013164484770167, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
-      propertyPath: animations.Array.data[4]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8210039709605267988, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
       propertyPath: m_Name
-      value: Target UpDown2
+      value: Target Spinny Mirror
       objectReference: {fileID: 0}
     - target: {fileID: 8210039709605267990, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
       propertyPath: m_RootOrder

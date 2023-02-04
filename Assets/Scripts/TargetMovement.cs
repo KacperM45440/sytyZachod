@@ -29,7 +29,7 @@ public class TargetMovement : MonoBehaviour
             // Tutaj cel znika: nie zostal zestrzelony, nie liczy sie do puli punktow
             // Animacja niszczenia nie ma byc zalezna od poziomu trudnosci, zmieniamy prêdkoœæ na domyœln¹ przed zniknieciem
             animatorRef.speed = 1;
-            animatorRef.SetTrigger("Disappear");
+            StartCoroutine(Disappear());
             return;
         }
         animatorRef.SetTrigger(animations[animations.Count - life]);
@@ -47,14 +47,25 @@ public class TargetMovement : MonoBehaviour
             animatorRef.speed = 1;
             WinCheck.Instance.Clicked();
             life = 0;
-            animatorRef.SetTrigger("Destroy");
+            StartCoroutine(DestroyMe());
         }
     }
 
     // Tutaj wlaczana jest animacja znikniecia i zniszczenia (wygasniecia) celu. Funkcja odpowiadzialna za zestrzelenie jest wyzej
 
-    public void DestroyMe()
+    IEnumerator Disappear()
     {
-        Destroy(gameObject);
+        animatorRef.SetTrigger("Disappear");
+        float animationLength = animatorRef.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSecondsRealtime(animationLength/5);
+        Destroy(transform.parent.gameObject);
+    }
+
+    IEnumerator DestroyMe()
+    {
+        animatorRef.SetTrigger("Destroy");
+        float animationLength = animatorRef.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSecondsRealtime(animationLength);
+        Destroy(transform.parent.gameObject);
     }
 }

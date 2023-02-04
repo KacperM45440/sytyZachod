@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-
+using System;
 
 public class GunScript : MonoBehaviour
 {
@@ -18,10 +18,13 @@ public class GunScript : MonoBehaviour
     private GameObject currentBullet;
     private SpriteRenderer spriteRef;
     public Sprite firedBullet;
+    private Transform destroyQueue;
+    private Vector3 cameraPos;
 
     [HideInInspector] public Animator animatorRef;
     void Start()
     {
+        destroyQueue = GameObject.Find("DestroyQueue").transform;
         cylinderBody = cylinder.transform.GetChild(0);
         animatorRef = cylinderBody.GetComponent<Animator>();
         currentMagazine = GameObject.Find("Magazine(Clone)");
@@ -36,6 +39,16 @@ public class GunScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             ReloadGun();
+        }
+   
+        if (destroyQueue.childCount > 0)
+        {
+            cameraPos = Camera.main.WorldToScreenPoint(destroyQueue.GetChild(0).transform.position);
+            bool outOfBounds = !Screen.safeArea.Contains(cameraPos);
+            if (outOfBounds)
+            {
+                Destroy(destroyQueue.GetChild(0).gameObject);
+            }
         }
     }
 
@@ -64,14 +77,12 @@ public class GunScript : MonoBehaviour
         // Todo: usprawnic proces
         currentBullet = currentMagazine.GetComponent<Transform>().GetChild(0).gameObject;
         currentBullet.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        currentBullet.transform.parent = null;
+        currentBullet.transform.parent = destroyQueue;
 
-        currentBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-100, 100), 0));
+        currentBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(UnityEngine.Random.Range(-100, 100), 0));
         spriteRef = currentBullet.GetComponent<SpriteRenderer>();
         spriteRef.sprite = firedBullet;
-        //Destroy(currentBullet);
     }
-
     public void ReloadGun()
     {
         // Jak w prawdziwym zyciu, podczas przeladowywania broni nie mozemy z niej jednoczesnie korzystac.
@@ -87,11 +98,8 @@ public class GunScript : MonoBehaviour
         }
         readyToFire = false;
         StartCoroutine(TimeOut());
-        Debug.Log(cylinderBody);
-        //Debug.Log(cylinderBody.localEulerAngles);
         currentAmmo = maxAmmo;
     }
-
     IEnumerator TimeOut()
     {
         // Zaczekaj na przeladowanie, nastepnie dodaj pociski na koncu przeladowania.       
@@ -99,7 +107,6 @@ public class GunScript : MonoBehaviour
         // Ponowna inicjalizacja magazynka; przeladowanie graficzne ma charakter wklejenie prefabu na nowo, wiec nie moze zostac odwolan do starych obiektow
         Destroy(currentMagazine);
         yield return new WaitUntil(() => currentMagazine == null);
-
         cylinderBody.localEulerAngles = SpawnMag.Instance.originalRotation;
         animatorRef.SetTrigger("Full Rotate");
         yield return new WaitForSeconds(reloadTime);

@@ -9,6 +9,7 @@ public class SpawnTarget : MonoBehaviour
     private LevelData chosenLevel;
     public float levelSpeed;
     public GameObject target;
+    private GameObject newTarget;
     private Vector2 pozycja;
     public int iloscCelow;
     
@@ -32,7 +33,8 @@ public class SpawnTarget : MonoBehaviour
             // Pozycja celu okreslana jest recznie poprzez wpis do tabeli znajdujacej sie w klasie LevelData.cs
             pozycja = new Vector2((chosenLevel.finishedTable[i].locationX), (chosenLevel.finishedTable[i].locationY));
             // Stworz cel: numer prefabu (animacji), pozycja, obrot
-            Instantiate(targets[chosenLevel.finishedTable[i].targetType], pozycja, Quaternion.identity);
+            newTarget = Instantiate(targets[chosenLevel.finishedTable[i].targetType], pozycja, Quaternion.identity);
+            newTarget.transform.parent = GameObject.Find("Enemies").transform;
             yield return new WaitForSeconds(chosenLevel.finishedTable[i].delay);
         }
     }

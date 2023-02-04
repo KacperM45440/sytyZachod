@@ -8,12 +8,14 @@ public class SpawnMag : MonoBehaviour
     public static SpawnMag Instance { get { return _instance; } }
 
     public GameObject magazinePrefab;
-    private GameObject cylinder;
+    private Transform cylinder;
     private GameObject currentMagazine;
+    public Vector3 originalRotation;
 
     void Start()
     {
-        cylinder = GameObject.Find("Cylinder");
+        cylinder = GameObject.Find("cylinderBody").transform;
+        originalRotation = cylinder.localEulerAngles;
         NewMagazine();
     }
 
@@ -32,9 +34,8 @@ public class SpawnMag : MonoBehaviour
     public void NewMagazine()
     {
         currentMagazine = Instantiate(magazinePrefab);
-        currentMagazine.transform.parent = cylinder.transform;
-        currentMagazine.transform.position = cylinder.transform.position;
-        currentMagazine.transform.rotation = cylinder.transform.rotation;
+        currentMagazine.transform.parent = cylinder;
+        currentMagazine.transform.SetPositionAndRotation(cylinder.position, cylinder.rotation);
         currentMagazine.transform.localScale = new Vector3(1, 1, 1);
     }
 }

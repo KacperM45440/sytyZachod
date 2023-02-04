@@ -12,12 +12,18 @@ public class GunScript : MonoBehaviour
     float reloadTime = 1.25f;
 
     public GameObject magazinePrefab;
+    public GameObject cylinder;
+    private Transform cylinderBody;
     private GameObject currentMagazine;
     private GameObject currentBullet;
     private SpriteRenderer spriteRef;
     public Sprite firedBullet;
+
+    [HideInInspector] public Animator animatorRef;
     void Start()
     {
+        cylinderBody = cylinder.transform.GetChild(0);
+        animatorRef = cylinderBody.GetComponent<Animator>();
         currentMagazine = GameObject.Find("Magazine(Clone)");
         currentAmmo = maxAmmo;
         readyToFire = true;
@@ -40,6 +46,7 @@ public class GunScript : MonoBehaviour
         if (readyToFire)
         {
             currentAmmo--;
+            animatorRef.SetTrigger("Rotate Single");
             DestroyBullet();
             if (currentAmmo <= 0)
             {
@@ -49,6 +56,7 @@ public class GunScript : MonoBehaviour
         }
     }
 
+
     public void DestroyBullet()
     {
         // Pociski sa odpinane z magazynka po jednym, wylatuja za ekran a nastepnie sa niszczone.
@@ -56,10 +64,11 @@ public class GunScript : MonoBehaviour
         // Todo: usprawnic proces
         currentBullet = currentMagazine.GetComponent<Transform>().GetChild(0).gameObject;
         currentBullet.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        currentBullet.transform.parent = null;
+
+        currentBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-100, 100), 0));
         spriteRef = currentBullet.GetComponent<SpriteRenderer>();
         spriteRef.sprite = firedBullet;
-        currentBullet.transform.parent = null;
-        currentBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-100, 100), 0));
         //Destroy(currentBullet);
     }
 
@@ -76,9 +85,10 @@ public class GunScript : MonoBehaviour
                 DestroyBullet();
             }
         }
-        Debug.Log(currentMagazine.transform.childCount);
         readyToFire = false;
         StartCoroutine(TimeOut());
+        Debug.Log(cylinderBody);
+        //Debug.Log(cylinderBody.localEulerAngles);
         currentAmmo = maxAmmo;
     }
 
@@ -88,6 +98,10 @@ public class GunScript : MonoBehaviour
         // Obecnie timeout czeka okreslona recznie ilosc sekund, natomiast lepiej byloby zamienic ponizsza linijke jakims sygnalem, ze animacja zostala zakonczona.
         // Ponowna inicjalizacja magazynka; przeladowanie graficzne ma charakter wklejenie prefabu na nowo, wiec nie moze zostac odwolan do starych obiektow
         Destroy(currentMagazine);
+        yield return new WaitUntil(() => currentMagazine == null);
+
+        cylinderBody.localEulerAngles = SpawnMag.Instance.originalRotation;
+        animatorRef.SetTrigger("Full Rotate");
         yield return new WaitForSeconds(reloadTime);
         SpawnMag.Instance.NewMagazine();
         currentMagazine = GameObject.Find("Magazine(Clone)");

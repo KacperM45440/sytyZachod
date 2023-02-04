@@ -840,9 +840,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   readyToFire: 0
-  ammoCounter: {fileID: 0}
   magazinePrefab: {fileID: 5430492425887138594, guid: 7e871881924bf3d4d9ee34fc3561bfdb, type: 3}
+  cylinder: {fileID: 1248995157}
   firedBullet: {fileID: 21300000, guid: 98c023b0f7b7c474f93000657b383ced, type: 3}
+  animatorRef: {fileID: 0}
 --- !u!114 &1072985837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1031,6 +1032,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1209444441}
     m_Modifications:
+    - target: {fileID: 151254661902046010, guid: e4ab29fee97fa5841999dccdaab56d49, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 151254661902046010, guid: e4ab29fee97fa5841999dccdaab56d49, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d274cbf6d8453584b9a7942fcaea5757, type: 2}
+    - target: {fileID: 151254661902046010, guid: e4ab29fee97fa5841999dccdaab56d49, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2304381221229726604, guid: e4ab29fee97fa5841999dccdaab56d49, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1163,6 +1176,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cylinder
       objectReference: {fileID: 0}
+    - target: {fileID: 8758828141972076877, guid: e4ab29fee97fa5841999dccdaab56d49, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d274cbf6d8453584b9a7942fcaea5757, type: 2}
+    - target: {fileID: 8758828141972076877, guid: e4ab29fee97fa5841999dccdaab56d49, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8849699618396106552, guid: e4ab29fee97fa5841999dccdaab56d49, type: 3}
       propertyPath: magazine
       value: 
@@ -1176,6 +1197,11 @@ PrefabInstance:
 --- !u!224 &1248995156 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2304381221229726604, guid: e4ab29fee97fa5841999dccdaab56d49, type: 3}
+  m_PrefabInstance: {fileID: 1248995155}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1248995157 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7642272969965610912, guid: e4ab29fee97fa5841999dccdaab56d49, type: 3}
   m_PrefabInstance: {fileID: 1248995155}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1478724747

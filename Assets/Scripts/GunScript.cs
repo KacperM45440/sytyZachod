@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEditor;
+
 
 public class GunScript : MonoBehaviour
 {
@@ -10,10 +11,14 @@ public class GunScript : MonoBehaviour
     int currentAmmo;
     float reloadTime = 1.25f;
 
-    public TMP_Text ammoCounter;
-
+    public GameObject magazinePrefab;
+    private GameObject currentMagazine;
+    private GameObject currentBullet;
+    private SpriteRenderer spriteRef;
+    public Sprite firedBullet;
     void Start()
     {
+        currentMagazine = GameObject.Find("Magazine(Clone)");
         currentAmmo = maxAmmo;
         readyToFire = true;
     }
@@ -35,7 +40,7 @@ public class GunScript : MonoBehaviour
         if (readyToFire)
         {
             currentAmmo--;
-            ammoCounter.text = "CURRENT AMMO: " + currentAmmo;
+            DestroyBullet();
             if (currentAmmo <= 0)
             {
                 ReloadGun();
@@ -44,11 +49,34 @@ public class GunScript : MonoBehaviour
         }
     }
 
+    public void DestroyBullet()
+    {
+        // Pociski sa odpinane z magazynka po jednym, wylatuja za ekran a nastepnie sa niszczone.
+        // Zmieniana im jest rowniez waga, kierunek odrzutu oraz obrazek w celu uatrakcyjnienia procesu przeladowania.
+        // Todo: usprawnic proces
+        currentBullet = currentMagazine.GetComponent<Transform>().GetChild(0).gameObject;
+        currentBullet.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        spriteRef = currentBullet.GetComponent<SpriteRenderer>();
+        spriteRef.sprite = firedBullet;
+        currentBullet.transform.parent = null;
+        currentBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-100, 100), 0));
+        //Destroy(currentBullet);
+    }
+
     public void ReloadGun()
     {
         // Jak w prawdziwym zyciu, podczas przeladowywania broni nie mozemy z niej jednoczesnie korzystac.
         // Blokujac mozliwosc strzalu unikamy sytuacji w ktorej przeladowujemy np. z 4 pociskami, i w trakcie trwania animacji przeladowania strzelamy dalej.
         // Dodajac pocisku na koncu procesu zamiast na poczatku wizualnie sugeruje graczowi, ze jego bron jest juz gotowa do strzalu.
+        if (currentAmmo > 0)
+        {
+            int x = currentMagazine.transform.childCount;
+            for (int i=0; i < x; i++)
+            {
+                DestroyBullet();
+            }
+        }
+        Debug.Log(currentMagazine.transform.childCount);
         readyToFire = false;
         StartCoroutine(TimeOut());
         currentAmmo = maxAmmo;
@@ -58,8 +86,11 @@ public class GunScript : MonoBehaviour
     {
         // Zaczekaj na przeladowanie, nastepnie dodaj pociski na koncu przeladowania.       
         // Obecnie timeout czeka okreslona recznie ilosc sekund, natomiast lepiej byloby zamienic ponizsza linijke jakims sygnalem, ze animacja zostala zakonczona.
+        // Ponowna inicjalizacja magazynka; przeladowanie graficzne ma charakter wklejenie prefabu na nowo, wiec nie moze zostac odwolan do starych obiektow
+        Destroy(currentMagazine);
         yield return new WaitForSeconds(reloadTime);
-        ammoCounter.text = "CURRENT AMMO: " + currentAmmo;
+        SpawnMag.Instance.NewMagazine();
+        currentMagazine = GameObject.Find("Magazine(Clone)");
         readyToFire = true;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SpawnMag : MonoBehaviour
 {
@@ -12,13 +13,6 @@ public class SpawnMag : MonoBehaviour
     private GameObject currentMagazine;
     public Vector3 originalRotation;
 
-    void Start()
-    {
-        cylinder = GameObject.Find("cylinderBody").transform;
-        originalRotation = cylinder.localEulerAngles;
-        NewMagazine();
-    }
-
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -29,6 +23,11 @@ public class SpawnMag : MonoBehaviour
         {
             _instance = this;
         }
+
+        cylinder = transform;
+        originalRotation = cylinder.localEulerAngles;
+        NewMagazine();
+
     }
 
     public void NewMagazine()

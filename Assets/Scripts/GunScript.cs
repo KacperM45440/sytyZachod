@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System;
+using TMPro;
 
 public class GunScript : MonoBehaviour
 {
@@ -18,21 +19,27 @@ public class GunScript : MonoBehaviour
     private GameObject currentBullet;
     private SpriteRenderer spriteRef;
     public Sprite firedBullet;
-    private Transform destroyQueue;
+    public Transform destroyQueue;
     private Vector3 cameraPos;
 
     [HideInInspector] public Animator animatorRef;
     void Start()
     {
-        destroyQueue = GameObject.Find("DestroyQueue").transform;
-        cylinderBody = cylinder.transform.GetChild(0);
-        animatorRef = cylinderBody.GetComponent<Animator>();
         currentMagazine = GameObject.Find("Magazine(Clone)");
+        GameObject.FindGameObjectWithTag("DebugTag").GetComponent<TMP_Text>().text += currentMagazine;
+        GameObject.FindGameObjectWithTag("DebugTag").GetComponent<TMP_Text>().text += "i get up";
+
         currentAmmo = maxAmmo;
         readyToFire = true;
     }
 
-    
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+        cylinderBody = cylinder.transform.GetChild(0);
+        animatorRef = cylinderBody.GetComponent<Animator>();
+    }
+
     void Update()
     {
         // Bron domyslnie przeladowywana jest w momencie wystrzelenia wszystkich posiadanych pociskow, natomiast mozna to zrobic recznie w dowolnym momencie

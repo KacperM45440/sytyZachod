@@ -12,6 +12,7 @@ public class SpawnTarget : MonoBehaviour
     private GameObject newTarget;
     private Vector2 pozycja;
     public int iloscCelow;
+    public Transform Enemies;
     
     void Start()
     {
@@ -34,7 +35,7 @@ public class SpawnTarget : MonoBehaviour
             pozycja = new Vector2((chosenLevel.finishedTable[i].locationX), (chosenLevel.finishedTable[i].locationY));
             // Stworz cel: numer prefabu (animacji), pozycja, obrot
             newTarget = Instantiate(targets[chosenLevel.finishedTable[i].targetType], pozycja, Quaternion.identity);
-            newTarget.transform.parent = GameObject.Find("Enemies").transform;
+            newTarget.transform.parent = Enemies;
             yield return new WaitForSeconds(chosenLevel.finishedTable[i].delay);
         }
     }

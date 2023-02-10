@@ -5,9 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public TransitionScript transitionRef;
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        transitionRef.PlayGame();
+    }
+
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
     }
 
     public void QuitGame()

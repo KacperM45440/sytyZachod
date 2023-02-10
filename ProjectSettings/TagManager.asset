@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TargetTag
   - BorderTag
+  - DebugTag
   layers:
   - Default
   - TransparentFX

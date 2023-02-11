@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System;
-using TMPro;
 
 public class GunScript : MonoBehaviour
 {
@@ -26,9 +25,6 @@ public class GunScript : MonoBehaviour
     void Start()
     {
         currentMagazine = GameObject.Find("Magazine(Clone)");
-        GameObject.FindGameObjectWithTag("DebugTag").GetComponent<TMP_Text>().text += currentMagazine;
-        GameObject.FindGameObjectWithTag("DebugTag").GetComponent<TMP_Text>().text += "i get up";
-
         currentAmmo = maxAmmo;
         readyToFire = true;
     }

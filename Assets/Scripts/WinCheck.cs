@@ -13,9 +13,14 @@ public class WinCheck : MonoBehaviour
     public static WinCheck Instance { get { return _instance; } }
     [HideInInspector] public int targetCounter;
     public SpawnTarget spawnRef;
-    public TMP_Text score;
+    public int maxScore;
+    public Slider scoreBar;
+    private float progress;
 
-    // ???
+    private void Start()
+    {
+        maxScore = spawnRef.iloscCelow*2;
+    }
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -40,7 +45,8 @@ public class WinCheck : MonoBehaviour
     public void Clicked()
     { 
         targetCounter++;
-        score.text = "TARGETS HIT: " + targetCounter;
+        progress = (float)targetCounter / (float)maxScore;
+        scoreBar.value = progress;
     }
 
     // Sprawdz, czy gracz wygral w gre. 
@@ -51,7 +57,7 @@ public class WinCheck : MonoBehaviour
     // 3. Po wygranej, przekierowac na animacje zwyciestwa nad przeciwnikiem, nastepnie zmiana sceny/poziomu
     public void Checker()
     {
-        if (targetCounter >= spawnRef.iloscCelow * 0.8f)
+        if (targetCounter >= maxScore * 0.6f)
         {
             GameObject.FindGameObjectWithTag("DebugTag").GetComponent<TMP_Text>().text = "Wygrales!";
         }

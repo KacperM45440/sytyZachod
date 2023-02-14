@@ -15,14 +15,29 @@ public class SpawnTarget : MonoBehaviour
     public int iloscCelow;
     public Transform enemies;
     private int roundNumber;
-    
+    public Animator popupAnimator;
+
     void Start()
     {
         InitialiseLevel();
     }
 
+    private void RoundPopup()
+    {
+        if (roundNumber.Equals(0))
+        {
+            popupAnimator.SetTrigger("round1");
+
+        }
+        else
+        {
+            popupAnimator.SetTrigger("round2");
+        }
+    }
     public void InitialiseLevel()
     {
+        RoundPopup();
+
         // Za³aduj dane celów z poziomu, nadaj odpowiednia im predkosc a nastepnie rozpocznij proces tworzenia celów w grze
         chosenLevel = new();
         foreach (GameObject t in targets)
@@ -34,8 +49,7 @@ public class SpawnTarget : MonoBehaviour
     }
     IEnumerator TargetSpawnerCoroutine()
     {
-        GameObject.FindGameObjectWithTag("DebugTag").GetComponent<TMP_Text>().text = "Runda: "+ (roundNumber+1);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3);
         for (int i = 0; i < iloscCelow; i++)
         {
             // Pozycja celu okreslana jest recznie poprzez wpis do tabeli znajdujacej sie w klasie LevelData.cs

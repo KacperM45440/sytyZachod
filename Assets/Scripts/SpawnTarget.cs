@@ -17,6 +17,7 @@ public class SpawnTarget : MonoBehaviour
     private int roundNumber;
     public Animator popupAnimator;
     public Animator fadeAnimator;
+    public bool canPunch;
 
     void Start()
     {

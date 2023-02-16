@@ -13,9 +13,11 @@ public class WinCheck : MonoBehaviour
     public static WinCheck Instance { get { return _instance; } }
     [HideInInspector] public int targetCounter;
     public SpawnTarget spawnRef;
-    public int maxScore;
+    private int maxScore;
     public Slider scoreBar;
     private float progress;
+    public Animator popupAnimatorRef;
+    public Animator fadeAnimatorRef;
 
     private void Start()
     {
@@ -57,13 +59,20 @@ public class WinCheck : MonoBehaviour
     // 3. Po wygranej, przekierowac na animacje zwyciestwa nad przeciwnikiem, nastepnie zmiana sceny/poziomu
     public void Checker()
     {
-        if (targetCounter >= maxScore * 0.6f)
+        if (targetCounter >= maxScore * 0.6f && targetCounter < maxScore * 0.95f)
         {
-            GameObject.FindGameObjectWithTag("DebugTag").GetComponent<TMP_Text>().text = "Wygrales!";
+            fadeAnimatorRef.SetTrigger("fade_in");
+            popupAnimatorRef.SetTrigger("win_regular");
+        }
+        else if (targetCounter >= maxScore * 0.95f)
+        {
+            fadeAnimatorRef.SetTrigger("fade_in");
+            popupAnimatorRef.SetTrigger("win_domination");
         }
         else
         {
-            GameObject.FindGameObjectWithTag("DebugTag").GetComponent<TMP_Text>().text = "Przegrales!";
+            fadeAnimatorRef.SetTrigger("fade_in");
+            popupAnimatorRef.SetTrigger("defeat");
         }
     }
 }

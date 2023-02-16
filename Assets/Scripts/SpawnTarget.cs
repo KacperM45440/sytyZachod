@@ -16,6 +16,7 @@ public class SpawnTarget : MonoBehaviour
     public Transform enemies;
     private int roundNumber;
     public Animator popupAnimator;
+    public Animator fadeAnimator;
 
     void Start()
     {
@@ -27,11 +28,13 @@ public class SpawnTarget : MonoBehaviour
         if (roundNumber.Equals(0))
         {
             popupAnimator.SetTrigger("round1");
-
+            StartCoroutine(FadeOut());
         }
         else
         {
+            fadeAnimator.SetTrigger("fade_in");
             popupAnimator.SetTrigger("round2");
+            StartCoroutine(FadeOut());
         }
     }
     public void InitialiseLevel()
@@ -71,5 +74,11 @@ public class SpawnTarget : MonoBehaviour
         {
             WinCheck.Instance.Checker();
         }
+    }
+
+    IEnumerator FadeOut()
+    {
+        yield return new WaitForSeconds(2);
+        fadeAnimator.SetTrigger("fade_out");
     }
 }

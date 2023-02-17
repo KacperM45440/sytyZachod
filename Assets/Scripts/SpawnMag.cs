@@ -5,12 +5,11 @@ using TMPro;
 
 public class SpawnMag : MonoBehaviour
 {
-    private static SpawnMag _instance;
-    public static SpawnMag Instance { get { return _instance; } }
-
-    public GameObject magazinePrefab;
     private Transform cylinder;
     private GameObject currentMagazine;
+    private static SpawnMag _instance;
+    public static SpawnMag Instance { get { return _instance; } }
+    public GameObject magazinePrefab;
     public Vector3 originalRotation;
 
     private void Awake()
@@ -32,6 +31,7 @@ public class SpawnMag : MonoBehaviour
 
     public void NewMagazine()
     {
+        // Stworz nowy magazynek z prefabu, a nastepnie doklej go do cylindra
         currentMagazine = Instantiate(magazinePrefab);
         currentMagazine.transform.parent = cylinder;
         currentMagazine.transform.SetPositionAndRotation(cylinder.position, cylinder.rotation);

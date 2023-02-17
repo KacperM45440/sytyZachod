@@ -1202,8 +1202,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAnimator: {fileID: 798314621}
+  gunController: {fileID: 1072985835}
   finisherBar: {fileID: 529215116}
-  kontroler: {fileID: 1072985835}
   dominated: 0
   canPunch: 0
 --- !u!61 &606154039
@@ -1733,12 +1733,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7202ef264fc6bc7418c24d04217a1846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  readyToFire: 0
-  magazinePrefab: {fileID: 5430492425887138594, guid: 7e871881924bf3d4d9ee34fc3561bfdb, type: 3}
+  animatorRef: {fileID: 0}
   cylinder: {fileID: 1248995157}
+  magazinePrefab: {fileID: 5430492425887138594, guid: 7e871881924bf3d4d9ee34fc3561bfdb, type: 3}
   firedBullet: {fileID: 21300000, guid: 98c023b0f7b7c474f93000657b383ced, type: 3}
   destroyQueue: {fileID: 344265683}
-  animatorRef: {fileID: 0}
+  readyToFire: 0
 --- !u!114 &1072985837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1752,16 +1752,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCounter: 0
-  backgroundRef: {fileID: 606154038}
-  popupAnimatorRef: {fileID: 302346516}
   fadeAnimatorRef: {fileID: 1097060212}
+  popupAnimatorRef: {fileID: 302346516}
   uiAnimatorRef: {fileID: 1209444442}
+  backgroundRef: {fileID: 606154038}
+  progressUI: {fileID: 1220328896}
+  finisherUI: {fileID: 529215114}
   scoreBar: {fileID: 1220328898}
   spawnRef: {fileID: 1897651783}
   comboCounter: {fileID: 13384947}
   scoreCounter: {fileID: 1107727030}
-  progressUI: {fileID: 1220328896}
-  finisherUI: {fileID: 529215114}
   combo: 1
   score: 0
 --- !u!4 &1072985838
@@ -3179,13 +3179,13 @@ MonoBehaviour:
   - {fileID: 4268068856823538005, guid: f26a3181713572b44bed1c369653c8dc, type: 3}
   - {fileID: 433978054245269376, guid: 03cb91f56434f884bbf5fa3a33bc4c71, type: 3}
   - {fileID: 8930724152496012740, guid: 1110e361f82e3e846886dfc815888ca2, type: 3}
-  levelSpeed: 1
   target: {fileID: 8210039709605267988, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
-  iloscCelow: 30
   enemies: {fileID: 1807083584}
   popupAnimator: {fileID: 302346516}
   fadeAnimator: {fileID: 1097060212}
   canPunch: 0
+  levelSpeed: 1
+  targetAmount: 30
 --- !u!4 &1897651784
 Transform:
   m_ObjectHideFlags: 0

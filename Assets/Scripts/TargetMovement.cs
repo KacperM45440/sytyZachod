@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class TargetMovement : MonoBehaviour
 {
-    public List<string> animations = new List<string>();
-    private GunScript gun;
-    public GameObject kontroler;
-    private int life;
     [HideInInspector] public Animator animatorRef;
     [HideInInspector] public float speed;
+    private GunScript gun;
+    private int life;
+    public GameObject kontroler;
+    public List<string> animations = new List<string>();
 
     void Start()
     {
@@ -35,9 +35,7 @@ public class TargetMovement : MonoBehaviour
         animatorRef.SetTrigger(animations[animations.Count - life]);
     }
 
-    // Cel zosta³ klikniêty, wiêc gra animacjê "zniszczenia"
-    //
-    // Todo: zamienic animacje niszczenia na particle?
+
     private void OnMouseDown()
     {
         if (gun.readyToFire)
@@ -52,7 +50,6 @@ public class TargetMovement : MonoBehaviour
     }
 
     // Tutaj wlaczana jest animacja znikniecia i zniszczenia (wygasniecia) celu. Funkcja odpowiadzialna za zestrzelenie jest wyzej
-
     IEnumerator Disappear()
     {
         animatorRef.SetTrigger("Disappear");
@@ -61,6 +58,7 @@ public class TargetMovement : MonoBehaviour
         Destroy(transform.parent.gameObject);
     }
 
+    // Cel zosta³ klikniêty, wiêc gra animacjê "zniszczenia"
     IEnumerator DestroyMe()
     {
         animatorRef.SetTrigger("Destroy");

@@ -5,22 +5,22 @@ using UnityEngine.UI;
 
 public class BackgroundScript : MonoBehaviour
 {
-    public Animator enemyAnimator;
     private GunScript gun;
+    public Animator enemyAnimator;
+    public GameObject gunController;
     public Slider finisherBar;
-    public GameObject kontroler;
     public bool dominated;
     public bool canPunch;
 
     void Start()
     {
-        gun = kontroler.GetComponent<GunScript>();
+        gun = gunController.GetComponent<GunScript>();
         dominated = false;
     }
 
     private void OnMouseDown()
     {
-        //Jako ze mozna nie trafic celu, klikniecie w tlo powoduje wystrzelenie (i zmarnowanie) pocisku
+        // Jako ze mozna nie trafic celu, klikniecie w tlo powoduje wystrzelenie (i zmarnowanie) pocisku
         if (!dominated)
         {
             gun.ShotFired();
@@ -28,6 +28,7 @@ public class BackgroundScript : MonoBehaviour
         }
         else
         {
+            // W etapie bonusowym, z zalozenia mozna klikac nieskonczonosc razy, dlatego nie ma koniecznosci podpinania (i konfigurowania) go pod system strzelania
             if (canPunch)
             {
                 WinCheck.Instance.DominationPunch();
@@ -38,6 +39,7 @@ public class BackgroundScript : MonoBehaviour
 
     public void PunchOut()
     {
+        // Zamiana broni na piesci, zaczecie odliczania czasu etapu bonusowego
         dominated = true;
         canPunch = true;
         StartCoroutine(Timer());

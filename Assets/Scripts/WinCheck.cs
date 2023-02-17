@@ -10,31 +10,32 @@ public class WinCheck : MonoBehaviour
     // Z klasy WinCheck tworzony jest singleton, poniewaz sprawdzac czy wygralismy na pewno bedziemy w jednym miejscu.
     // Nie ma tez potrzeby tworzenia zadnych kopii tej klasy. Dzieki temu ulatwic mozna odwolywanie sie do niej z innych miejsc w programie.
     [HideInInspector] public int targetCounter;
-    public BackgroundScript backgroundRef;
-    public Animator popupAnimatorRef;
-    public Animator fadeAnimatorRef;
-    public Animator uiAnimatorRef;
-    public Slider scoreBar;
-    public SpawnTarget spawnRef;
+    private int maxScore;
+    private float progress;
     private static WinCheck _instance;
     public static WinCheck Instance { get { return _instance; } }
-    public TMP_Text comboCounter;
-    public TMP_Text scoreCounter;
+    public Animator fadeAnimatorRef;
+    public Animator popupAnimatorRef;
+    public Animator uiAnimatorRef;
+    public BackgroundScript backgroundRef;
     public GameObject progressUI;
     public GameObject finisherUI;
-
+    public Slider scoreBar;
+    public SpawnTarget spawnRef;
+    public TMP_Text comboCounter;
+    public TMP_Text scoreCounter;
     public int combo;
     public int score;
 
-    private int maxScore;
-    private float progress;
-
     private void Start()
     {
-        maxScore = spawnRef.iloscCelow*2;
+        // Maksymalny mozliwy wynik jest suma tarcz z obu rund
+        maxScore = spawnRef.targetAmount * 2;
     }
     private void Awake()
     {
+        Application.targetFrameRate = 60;
+
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
@@ -53,11 +54,15 @@ public class WinCheck : MonoBehaviour
         }
     }
 
-    // W przypadku trafienia, zwieksz na ekranie ilosc trafionych celow o jeden.
+    
     public void Clicked()
-    { 
+    {
+        // W przypadku trafienia, zwieksz ilosc trafionych celow o jeden, oraz popchnij do przodu pasek postepu.
+        // Zwykle zestrzelenie celu przyznaje 100 punktow, natomiast trafianie wielu celow z rzedu podbija mnoznik combo.
         targetCounter++;
         score += (100 * combo);
+        // Wynik zawsze wyswietlany jest szesciocyfrowo, w przypadku mniejszych sum uzupelniany jest brakujacymi zerami
+        // 125 = 000125, 68 - 000068 itp.
         scoreCounter.text = score.ToString("D6");
         if (combo < 5)
         {
@@ -70,20 +75,22 @@ public class WinCheck : MonoBehaviour
 
     public void Missed()
     {
+        // Zresetuj combo w przypadku trafienia w tlo
         combo = 1;
         comboCounter.text = "X"+combo;
     }
 
     public void DominationPunch()
     {
+        // Funkcja odpowiedzialna za przyznawanie punktow w etapie bonusowym
+        // Te punkty nie podlegaja premiowaniu za combo
         score += 100;
         scoreCounter.text = score.ToString("D6");
     }    
+
     // Sprawdz, czy gracz wygral w gre. 
     //
     // Todo: 
-    // 1. Nie trzeba zestrzelic wszystkich celow, ustanowic progi typu 70%, 80%, 90% zaleznie od poziomu
-    // 2. Aby wygrac w gre, poziom musi sie zakonczyc, nawet jesli prog zostal juz wczesniej przekroczony
     // 3. Po wygranej, przekierowac na animacje zwyciestwa nad przeciwnikiem, nastepnie zmiana sceny/poziomu
     public void Checker() 
     {
@@ -98,10 +105,12 @@ public class WinCheck : MonoBehaviour
         }
         else if (targetCounter >= maxScore * 0.95f)
         {
+            // Zestrzelenie wiekszosci celow wynagradza etapem bonusowym przed zmiana poziomu
             StartCoroutine(Finisher());
         }
         else
         {
+            // W przypadku przegranej, przeciwnik nie ginie
             fadeAnimatorRef.SetTrigger("fade_in");
             popupAnimatorRef.SetTrigger("defeat");
         }
@@ -109,12 +118,14 @@ public class WinCheck : MonoBehaviour
 
     IEnumerator Finisher()
     {
+        // Podmien pasek postepu na pasek czasu etapu bonusowego
         uiAnimatorRef.SetTrigger("roll_back");
         yield return new WaitForSeconds(0.5f);
         progressUI.SetActive(false);
         finisherUI.SetActive(true);
         uiAnimatorRef.SetTrigger("roll_up");
 
+        // Poczekaj na zakonczenie etapu, a nastepnie przyznaj dodatkowe punkty za pokonanie przeciwnika
         yield return new WaitForSeconds(0.25f);
         backgroundRef.PunchOut();
         yield return new WaitUntil(() => backgroundRef.canPunch.Equals(false));

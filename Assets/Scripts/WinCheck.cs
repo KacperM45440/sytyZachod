@@ -21,6 +21,9 @@ public class WinCheck : MonoBehaviour
     public GameObject progressUI;
     public GameObject finisherUI;
     public Slider scoreBar;
+    public Sprite enemyTired;
+    public Sprite enemyDominated;
+    public SpriteRenderer enemySprite;
     public SpawnTarget spawnRef;
     public TMP_Text comboCounter;
     public TMP_Text scoreCounter;
@@ -60,6 +63,7 @@ public class WinCheck : MonoBehaviour
         // W przypadku trafienia, zwieksz ilosc trafionych celow o jeden, oraz popchnij do przodu pasek postepu.
         // Zwykle zestrzelenie celu przyznaje 100 punktow, natomiast trafianie wielu celow z rzedu podbija mnoznik combo.
         targetCounter++;
+        EnemyCheck();
         score += (100 * combo);
         // Wynik zawsze wyswietlany jest szesciocyfrowo, w przypadku mniejszych sum uzupelniany jest brakujacymi zerami
         // 125 = 000125, 68 - 000068 itp.
@@ -73,6 +77,17 @@ public class WinCheck : MonoBehaviour
         scoreBar.value = progress;
     }
 
+    public void EnemyCheck()
+    {
+        if (targetCounter >= maxScore * 0.6f && targetCounter < maxScore * 0.95f)
+        {
+            enemySprite.sprite = enemyTired;
+        }
+        else if (targetCounter >= maxScore * 0.95f)
+        {
+            enemySprite.sprite = enemyDominated;
+        }
+    }
     public void Missed()
     {
         // Zresetuj combo w przypadku trafienia w tlo
@@ -133,6 +148,7 @@ public class WinCheck : MonoBehaviour
         scoreCounter.text = score.ToString("D6");
 
         backgroundRef.KillEnemy();
+        yield return new WaitForSeconds(1f);
         fadeAnimatorRef.SetTrigger("fade_in");
         popupAnimatorRef.SetTrigger("win_domination");
     }

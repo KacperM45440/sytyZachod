@@ -76,7 +76,6 @@ public class GunScript : MonoBehaviour
     {
         // Pociski sa odpinane z magazynka po jednym, wylatuja za ekran a nastepnie sa niszczone.
         // Zmieniana im jest rowniez waga, kierunek odrzutu oraz obrazek w celu uatrakcyjnienia procesu przeladowania.
-        // Todo: usprawnic proces
         currentBullet = currentMagazine.GetComponent<Transform>().GetChild(0).gameObject;
         currentBullet.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         currentBullet.transform.parent = destroyQueue;
@@ -93,6 +92,7 @@ public class GunScript : MonoBehaviour
         if (!isReloading)
         {
             isReloading = true;
+            readyToFire = false;
             if (currentAmmo > 0)
             {
                 int x = currentMagazine.transform.childCount;
@@ -101,7 +101,6 @@ public class GunScript : MonoBehaviour
                     DestroyBullet();
                 }
             }
-            readyToFire = false;
             StartCoroutine(TimeOut());
             currentAmmo = maxAmmo;
         }

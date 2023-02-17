@@ -1203,7 +1203,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyAnimator: {fileID: 798314621}
   gunController: {fileID: 1072985835}
+  winCheckRef: {fileID: 1072985837}
   finisherBar: {fileID: 529215116}
+  enemyDead: {fileID: 21300000, guid: 520d1988a2eee7544bc398fdd9a35652, type: 3}
+  enemyPunched1: {fileID: 21300000, guid: 202947bd4d13e0d43bba08e934cc5fad, type: 3}
+  enemyPunched2: {fileID: 21300000, guid: 0fa5bca242bb60341b57234570c98019, type: 3}
+  enemyPunched3: {fileID: 21300000, guid: 6f94ca0e2efdb2b4a987d291c5fe8dba, type: 3}
   dominated: 0
   canPunch: 0
 --- !u!61 &606154039
@@ -1405,7 +1410,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798314618}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.17, y: 0.43, z: 100}
+  m_LocalPosition: {x: -2, y: 0.5, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1759,6 +1764,9 @@ MonoBehaviour:
   progressUI: {fileID: 1220328896}
   finisherUI: {fileID: 529215114}
   scoreBar: {fileID: 1220328898}
+  enemyTired: {fileID: 21300000, guid: 4410817495df33949b15f473f21ca28f, type: 3}
+  enemyDominated: {fileID: 21300000, guid: 04e8d38bcb098d24abd67962c1bb3905, type: 3}
+  enemySprite: {fileID: 798314620}
   spawnRef: {fileID: 1897651783}
   comboCounter: {fileID: 13384947}
   scoreCounter: {fileID: 1107727030}
@@ -3185,7 +3193,7 @@ MonoBehaviour:
   fadeAnimator: {fileID: 1097060212}
   canPunch: 0
   levelSpeed: 1
-  targetAmount: 30
+  targetAmount: 1
 --- !u!4 &1897651784
 Transform:
   m_ObjectHideFlags: 0

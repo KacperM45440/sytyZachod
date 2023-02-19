@@ -1012,7 +1012,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 562109470}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 70, y: 0, z: -1}
+  m_LocalPosition: {x: 47, y: 0, z: -1}
   m_LocalScale: {x: 18, y: 18, z: 108}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1760,6 +1760,7 @@ MonoBehaviour:
   fadeAnimatorRef: {fileID: 1097060212}
   popupAnimatorRef: {fileID: 302346516}
   uiAnimatorRef: {fileID: 1209444442}
+  enemyAnimatorRef: {fileID: 798314621}
   backgroundRef: {fileID: 606154038}
   progressUI: {fileID: 1220328896}
   finisherUI: {fileID: 529215114}
@@ -1770,6 +1771,7 @@ MonoBehaviour:
   spawnRef: {fileID: 1897651783}
   comboCounter: {fileID: 13384947}
   scoreCounter: {fileID: 1107727030}
+  changeScene: {fileID: 1594724355}
   combo: 1
   score: 0
 --- !u!4 &1072985838
@@ -2983,6 +2985,17 @@ Transform:
   m_Father: {fileID: 116719123}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1594724355 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4954649166398029786, guid: e030e8877d23706458e208cf0529b892, type: 3}
+  m_PrefabInstance: {fileID: 178824404}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069ab945da6bef443b56eb133187147b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1726411877
 GameObject:
   m_ObjectHideFlags: 0
@@ -3193,7 +3206,7 @@ MonoBehaviour:
   fadeAnimator: {fileID: 1097060212}
   canPunch: 0
   levelSpeed: 1
-  targetAmount: 1
+  targetAmount: 30
 --- !u!4 &1897651784
 Transform:
   m_ObjectHideFlags: 0

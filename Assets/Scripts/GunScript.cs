@@ -45,11 +45,11 @@ public class GunScript : MonoBehaviour
         // Zniszcz pociski, ktore wylecialy juz poza ekran
         if (destroyQueue.childCount > 0)
         {
-            cameraPos = Camera.main.WorldToScreenPoint(destroyQueue.GetChild(0).transform.position);
+            cameraPos = Camera.main.WorldToScreenPoint(destroyQueue.GetChild(destroyQueue.childCount - 1).transform.position);
             bool outOfBounds = !Screen.safeArea.Contains(cameraPos);
             if (outOfBounds)
             {
-                Destroy(destroyQueue.GetChild(0).gameObject);
+                Destroy(destroyQueue.GetChild(destroyQueue.childCount - 1).gameObject);
             }
         }
     }

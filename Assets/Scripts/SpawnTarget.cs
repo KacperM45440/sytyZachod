@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 
@@ -9,8 +10,9 @@ public class SpawnTarget : MonoBehaviour
     private LevelData chosenLevel;
     private Vector2 targetPosition;
     private int roundNumber;
+    private int currentLevel;
     // Prefab celu i animacje przypisywane sa w edytorze 
-    public List<GameObject> targets = new List<GameObject>();
+    public List<GameObject> targets = new();
     public GameObject target;
     public Transform enemies;
     public Animator popupAnimator;
@@ -49,8 +51,26 @@ public class SpawnTarget : MonoBehaviour
         {
             t.GetComponentInChildren<TargetMovement>().speed = (levelSpeed + roundNumber);
         }
-        chosenLevel.Level1();
+        ChooseLevel();
         StartCoroutine(TargetSpawnerCoroutine());
+    }
+
+    public void ChooseLevel()
+    {
+        currentLevel = SceneManager.GetActiveScene().buildIndex;
+        switch (currentLevel)
+        {
+            case 1:
+                chosenLevel.Level1();
+                break;
+            case 2:
+                chosenLevel.Level2();
+                break;
+            //case 3:
+            default:
+                Debug.Log("Glupcze, zaburzyles odwieczna rownowage czterystu wymiarow");
+                break;
+        }
     }
     IEnumerator TargetSpawnerCoroutine()
     {

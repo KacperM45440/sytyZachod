@@ -19,14 +19,23 @@ public class TransitionScript : MonoBehaviour
             animatorRef.SetTrigger("Ended");
         }
     }
-
     public void PlayGame()
+    {
+        PlayerPrefs.SetInt("currentScore", 0);
+        NextLevel();
+    }
+    public void NextLevel()
     {
         // Zmien scene
         sceneNumber = SceneManager.GetActiveScene().buildIndex + 1;
         StartCoroutine(LoadLevel(sceneNumber));
     }
 
+    public void ThisLevel()
+    {
+        sceneNumber = SceneManager.GetActiveScene().buildIndex;
+        StartCoroutine(LoadLevel(sceneNumber));
+    }
     IEnumerator LoadLevel(int levelIndex)
     {
         // Rozpocznij przyciemnianie

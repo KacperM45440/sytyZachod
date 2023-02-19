@@ -19,6 +19,10 @@ PrefabInstance:
       propertyPath: animations.Array.data[1]
       value: Right
       objectReference: {fileID: 0}
+    - target: {fileID: 7129789943588392013, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 78f10c9328b88c347b0ae885363d818c, type: 2}
     - target: {fileID: 8210039709605267988, guid: 8d5c7b4fb73564f48b73833c811f7ec3, type: 3}
       propertyPath: m_Name
       value: Target 2Right

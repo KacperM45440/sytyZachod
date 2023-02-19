@@ -17,6 +17,7 @@ public class WinCheck : MonoBehaviour
     public Animator fadeAnimatorRef;
     public Animator popupAnimatorRef;
     public Animator uiAnimatorRef;
+    public Animator enemyAnimatorRef;
     public BackgroundScript backgroundRef;
     public GameObject progressUI;
     public GameObject finisherUI;
@@ -27,6 +28,7 @@ public class WinCheck : MonoBehaviour
     public SpawnTarget spawnRef;
     public TMP_Text comboCounter;
     public TMP_Text scoreCounter;
+    public TransitionScript changeScene;
     public int combo;
     public int score;
 
@@ -38,6 +40,8 @@ public class WinCheck : MonoBehaviour
     private void Awake()
     {
         Application.targetFrameRate = 60;
+        score = PlayerPrefs.GetInt("currentScore");
+        scoreCounter.text = score.ToString("D6");
 
         if (_instance != null && _instance != this)
         {
@@ -79,11 +83,12 @@ public class WinCheck : MonoBehaviour
 
     public void EnemyCheck()
     {
-        if (targetCounter >= maxScore * 0.6f && targetCounter < maxScore * 0.95f)
+        enemyAnimatorRef.SetTrigger("hurt");
+        if (targetCounter >= maxScore * 0.6f && targetCounter < maxScore * 0.8f)
         {
             enemySprite.sprite = enemyTired;
         }
-        else if (targetCounter >= maxScore * 0.95f)
+        else if (targetCounter >= maxScore * 0.8f)
         {
             enemySprite.sprite = enemyDominated;
         }
@@ -109,7 +114,7 @@ public class WinCheck : MonoBehaviour
     // 3. Po wygranej, przekierowac na animacje zwyciestwa nad przeciwnikiem, nastepnie zmiana sceny/poziomu
     public void Checker() 
     {
-        if (targetCounter >= maxScore * 0.6f && targetCounter < maxScore * 0.95f)
+        if (targetCounter >= maxScore * 0.6f && targetCounter < maxScore * 0.8f)
         {
             score += 5000;
             scoreCounter.text = score.ToString("D6");
@@ -117,8 +122,10 @@ public class WinCheck : MonoBehaviour
             backgroundRef.KillEnemy();
             fadeAnimatorRef.SetTrigger("fade_in");
             popupAnimatorRef.SetTrigger("win_regular");
+            StartCoroutine(NextLevel());
+            
         }
-        else if (targetCounter >= maxScore * 0.95f)
+        else if (targetCounter >= maxScore * 0.8f)
         {
             // Zestrzelenie wiekszosci celow wynagradza etapem bonusowym przed zmiana poziomu
             StartCoroutine(Finisher());
@@ -128,7 +135,23 @@ public class WinCheck : MonoBehaviour
             // W przypadku przegranej, przeciwnik nie ginie
             fadeAnimatorRef.SetTrigger("fade_in");
             popupAnimatorRef.SetTrigger("defeat");
+            StartCoroutine(Retry());
         }
+    }
+    
+    IEnumerator NextLevel()
+    {
+        PlayerPrefs.SetInt("currentScore", score);
+        yield return new WaitForSeconds(2);
+        changeScene.NextLevel();
+    }
+
+    IEnumerator Retry()
+    {
+        yield return new WaitForSeconds(2);
+        score = 0;
+        PlayerPrefs.SetInt("currentScore", score);
+        changeScene.ThisLevel();
     }
 
     IEnumerator Finisher()
@@ -151,5 +174,7 @@ public class WinCheck : MonoBehaviour
         yield return new WaitForSeconds(1f);
         fadeAnimatorRef.SetTrigger("fade_in");
         popupAnimatorRef.SetTrigger("win_domination");
+
+        StartCoroutine(NextLevel());
     }
 }

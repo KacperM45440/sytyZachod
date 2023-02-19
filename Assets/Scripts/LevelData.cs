@@ -65,7 +65,43 @@ public class LevelData
     public void Level2()
     {
         List<LevelData> table = new();
-        //table.Add(new LevelData() { targetType = 3, locationX = -1f, locationY = 1f, delay = 1f });
+        
+        table.Add(new LevelData() { targetType = 5, locationX = 0f, locationY = -1f, delay = 3f });
+
+        table.Add(new LevelData() { targetType = 5, locationX = -2f, locationY = -1f, delay = 0.0f });
+        table.Add(new LevelData() { targetType = 5, locationX = 0f, locationY = -1f, delay = 0.0f });
+        table.Add(new LevelData() { targetType = 5, locationX = 2f, locationY = -1f, delay = 1.5f });
+        table.Add(new LevelData() { targetType = 3, locationX = -1f, locationY = -1f, delay = 1f });
+        table.Add(new LevelData() { targetType = 2, locationX = 1f, locationY = -2f, delay = 3f });
+
+        table.Add(new LevelData() { targetType = 3, locationX = -3f, locationY = -2f, delay = 0.5f });
+        table.Add(new LevelData() { targetType = 2, locationX = 3f, locationY = -1f, delay = 0.5f });
+        table.Add(new LevelData() { targetType = 3, locationX = -3f, locationY = 0f, delay = 0.5f });
+        table.Add(new LevelData() { targetType = 2, locationX = 3f, locationY = 1f, delay = 0.5f });
+        table.Add(new LevelData() { targetType = 3, locationX = -3f, locationY = 2f, delay = 0.5f });
+        table.Add(new LevelData() { targetType = 2, locationX = 3f, locationY = 3f, delay = 3f });
+
+        table.Add(new LevelData() { targetType = 1, locationX = -3f, locationY = -0.5f, delay = 0.0f });
+        table.Add(new LevelData() { targetType = 1, locationX = 3f, locationY = -0.5f, delay = 1f });
+        table.Add(new LevelData() { targetType = 3, locationX = -3f, locationY = 2f, delay = 0.0f });
+        table.Add(new LevelData() { targetType = 2, locationX = 3f, locationY = -1f, delay = 1f });
+        table.Add(new LevelData() { targetType = 4, locationX = -1f, locationY = 0.5f, delay = 0.0f });
+        table.Add(new LevelData() { targetType = 0, locationX = 1f, locationY = 0.5f, delay = 3f });
+
+        table.Add(new LevelData() { targetType = 6, locationX = -4f, locationY = 3f, delay = 0.75f });
+        table.Add(new LevelData() { targetType = 3, locationX = -4f, locationY = 3f, delay = 1.25f });
+        table.Add(new LevelData() { targetType = 6, locationX = -2f, locationY = 2.5f, delay = 0.75f });
+        table.Add(new LevelData() { targetType = 3, locationX = -2f, locationY = 2.5f, delay = 1.25f });
+        table.Add(new LevelData() { targetType = 6, locationX = 0f, locationY = 2f, delay = 0.75f });
+        table.Add(new LevelData() { targetType = 3, locationX = 0f, locationY = 2f, delay = 3f });
+
+        table.Add(new LevelData() { targetType = 5, locationX = 4f, locationY = -1f, delay = 0.75f });
+        table.Add(new LevelData() { targetType = 2, locationX = 4f, locationY = -1f, delay = 1.25f });
+        table.Add(new LevelData() { targetType = 5, locationX = 2f, locationY = -0.5f, delay = 0.75f });
+        table.Add(new LevelData() { targetType = 2, locationX = 2f, locationY = -0.5f, delay = 1.25f });
+        table.Add(new LevelData() { targetType = 5, locationX = 0f, locationY = 0f, delay = 0.75f });
+        table.Add(new LevelData() { targetType = 2, locationX = 0f, locationY = 0f, delay = 2f });
+
         finishedTable = table;
     }
 }

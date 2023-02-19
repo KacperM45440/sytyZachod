@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,53 +42,58 @@ public class BackgroundScript : MonoBehaviour
             // W etapie bonusowym, z zalozenia mozna klikac nieskonczonosc razy, dlatego nie ma koniecznosci podpinania (i konfigurowania) go pod system strzelania
             if (canPunch)
             {
-                winCheckRef.DominationPunch();
-                enemyAnimator.SetTrigger("hurt");
-
-                while (i.Equals(previousAnim))
-                {
-                    i = Random.Range(1, 4);
-                }
-                j = Random.Range(1, 3);
-                n = Random.Range(1, 3);;
-
-                if (i.Equals(1))
-                {
-                    rendererRef.sprite = enemyPunched1;
-                    previousAnim = i;
-                }
-                else if (i.Equals(2))
-                {
-                    rendererRef.sprite = enemyPunched2;
-                    previousAnim = i;
-                }
-                else
-                {
-                    rendererRef.sprite = enemyPunched3;
-                    previousAnim = i;
-                }
+                EnemyPunched();
                 
-                if (j.Equals(1))
-                {
-                    rendererRef.flipX = true;
-                }
-                else
-                {
-                    rendererRef.flipX = false;
-                }
-
-                if (n.Equals(1))
-                {
-                    enemyAnimator.SetTrigger("recoil1");
-                }
-                else 
-                {
-                    enemyAnimator.SetTrigger("recoil2");
-                }
             }
         }
     }
 
+    public void EnemyPunched()
+    {
+        winCheckRef.DominationPunch();
+        enemyAnimator.SetTrigger("hurt");
+
+        while (i.Equals(previousAnim))
+        {
+            i = Random.Range(1, 4);
+        }
+        j = Random.Range(1, 3);
+        n = Random.Range(1, 3); 
+
+        if (i.Equals(1))
+        {
+            rendererRef.sprite = enemyPunched1;
+            previousAnim = i;
+        }
+        else if (i.Equals(2))
+        {
+            rendererRef.sprite = enemyPunched2;
+            previousAnim = i;
+        }
+        else
+        {
+            rendererRef.sprite = enemyPunched3;
+            previousAnim = i;
+        }
+
+        if (j.Equals(1))
+        {
+            rendererRef.flipX = true;
+        }
+        else
+        {
+            rendererRef.flipX = false;
+        }
+
+        if (n.Equals(1))
+        {
+            enemyAnimator.SetTrigger("recoil1");
+        }
+        else
+        {
+            enemyAnimator.SetTrigger("recoil2");
+        }
+    }
     public void PunchOut()
     {
         // Zamiana broni na piesci, zaczecie odliczania czasu etapu bonusowego

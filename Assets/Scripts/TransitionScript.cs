@@ -24,6 +24,11 @@ public class TransitionScript : MonoBehaviour
         PlayerPrefs.SetInt("currentScore", 0);
         NextLevel();
     }
+    
+    public void MainMenu()
+    {
+        StartCoroutine(LoadLevel(0)); 
+    }
     public void NextLevel()
     {
         // Zmien scene

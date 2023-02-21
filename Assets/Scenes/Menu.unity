@@ -971,6 +971,10 @@ PrefabInstance:
       value: Level Loader
       objectReference: {fileID: 0}
     - target: {fileID: 4954649166398029786, guid: e030e8877d23706458e208cf0529b892, type: 3}
+      propertyPath: startRn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4954649166398029786, guid: e030e8877d23706458e208cf0529b892, type: 3}
       propertyPath: animatorRef
       value: 
       objectReference: {fileID: 386195523}

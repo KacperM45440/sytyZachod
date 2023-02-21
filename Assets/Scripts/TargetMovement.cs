@@ -45,6 +45,7 @@ public class TargetMovement : MonoBehaviour
 
     private void OnMouseDown()
     {
+        Debug.Log("klik");
         if (gun.readyToFire)
         {
             gun.ShotFired();

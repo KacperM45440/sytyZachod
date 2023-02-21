@@ -10,6 +10,7 @@ public class WinCheck : MonoBehaviour
     // Z klasy WinCheck tworzony jest singleton, poniewaz sprawdzac czy wygralismy na pewno bedziemy w jednym miejscu.
     // Nie ma tez potrzeby tworzenia zadnych kopii tej klasy. Dzieki temu ulatwic mozna odwolywanie sie do niej z innych miejsc w programie.
     [HideInInspector] public int targetCounter;
+
     private int maxScore;
     private float progress;
     private static WinCheck _instance;
@@ -21,6 +22,7 @@ public class WinCheck : MonoBehaviour
     public BackgroundScript backgroundRef;
     public GameObject progressUI;
     public GameObject finisherUI;
+    public GunScript gunRef;
     public Slider scoreBar;
     public Sprite enemyTired;
     public Sprite enemyDominated;
@@ -29,6 +31,7 @@ public class WinCheck : MonoBehaviour
     public TMP_Text comboCounter;
     public TMP_Text scoreCounter;
     public TransitionScript changeScene;
+    public static bool isPaused;
     public int combo;
     public int score;
 
@@ -42,6 +45,7 @@ public class WinCheck : MonoBehaviour
         Application.targetFrameRate = 60;
         score = PlayerPrefs.GetInt("currentScore");
         scoreCounter.text = score.ToString("D6");
+        isPaused = false;
 
         if (_instance != null && _instance != this)
         {
@@ -57,10 +61,28 @@ public class WinCheck : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene(0);
+            CheckPause();
         }
     }
 
+    public void CheckPause()
+    {
+        if(isPaused.Equals(false))
+        {
+            PauseGame();
+        }
+        else
+        {
+            Unpause();
+        }
+    }
+    public void PauseGame()
+    {
+        isPaused = true;
+        gunRef.readyToFire = false;
+        fadeAnimatorRef.SetTrigger("fade_in");
+        popupAnimatorRef.SetTrigger("pause_menu");
+    }    
     
     public void Clicked()
     {
@@ -116,14 +138,7 @@ public class WinCheck : MonoBehaviour
     {
         if (targetCounter >= maxScore * 0.6f && targetCounter < maxScore * 0.8f)
         {
-            score += 5000;
-            scoreCounter.text = score.ToString("D6");
-
-            backgroundRef.KillEnemy();
-            fadeAnimatorRef.SetTrigger("fade_in");
-            popupAnimatorRef.SetTrigger("win_regular");
-            StartCoroutine(NextLevel());
-            
+            StartCoroutine(Completed());
         }
         else if (targetCounter >= maxScore * 0.8f)
         {
@@ -133,9 +148,10 @@ public class WinCheck : MonoBehaviour
         else
         {
             // W przypadku przegranej, przeciwnik nie ginie
+            gunRef.readyToFire = false;
+            Unpause();
             fadeAnimatorRef.SetTrigger("fade_in");
             popupAnimatorRef.SetTrigger("defeat");
-            StartCoroutine(Retry());
         }
     }
     
@@ -146,14 +162,47 @@ public class WinCheck : MonoBehaviour
         changeScene.NextLevel();
     }
 
-    IEnumerator Retry()
+    public void Retry()
     {
-        yield return new WaitForSeconds(2);
         score = 0;
         PlayerPrefs.SetInt("currentScore", score);
+        popupAnimatorRef.SetTrigger("idle");
         changeScene.ThisLevel();
     }
 
+    public void ExitToMenu()
+    {
+        score = 0;
+        PlayerPrefs.SetInt("currentScore", score);
+        changeScene.MainMenu();
+    }
+
+    public void Unpause()
+    {
+        if (isPaused)
+        {
+            if (!fadeAnimatorRef.GetCurrentAnimatorStateInfo(0).IsName("fade_out"))
+            {
+                fadeAnimatorRef.SetTrigger("fade_out");
+            }
+            popupAnimatorRef.SetTrigger("idle");
+            gunRef.readyToFire = true;
+            isPaused = false;
+        }
+    }
+    IEnumerator Completed()
+    {
+        score += 5000;
+        scoreCounter.text = score.ToString("D6");
+        gunRef.readyToFire = false;
+
+        backgroundRef.KillEnemy();
+        Unpause();
+        yield return new WaitForSeconds(1f);
+        fadeAnimatorRef.SetTrigger("fade_in");
+        popupAnimatorRef.SetTrigger("win_regular");
+        StartCoroutine(NextLevel());
+    }
     IEnumerator Finisher()
     {
         // Podmien pasek postepu na pasek czasu etapu bonusowego
@@ -169,8 +218,10 @@ public class WinCheck : MonoBehaviour
         yield return new WaitUntil(() => backgroundRef.canPunch.Equals(false));
         score += 10000;
         scoreCounter.text = score.ToString("D6");
+        gunRef.readyToFire = false;
 
         backgroundRef.KillEnemy();
+        Unpause();
         yield return new WaitForSeconds(1f);
         fadeAnimatorRef.SetTrigger("fade_in");
         popupAnimatorRef.SetTrigger("win_domination");

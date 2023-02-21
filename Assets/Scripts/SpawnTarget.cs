@@ -80,8 +80,9 @@ public class SpawnTarget : MonoBehaviour
         {
             // Pozycja celu okreslana jest recznie poprzez wpis do tabeli znajdujacej sie w klasie LevelData.cs
             // Stworz cel: numer prefabu (animacji), pozycja, obrot
-            targetPosition = new Vector2((chosenLevel.finishedTable[i].locationX), (chosenLevel.finishedTable[i].locationY));
+            targetPosition = new Vector3((chosenLevel.finishedTable[i].locationX), (chosenLevel.finishedTable[i].locationY));
             newTarget = Instantiate(targets[chosenLevel.finishedTable[i].targetType], targetPosition, Quaternion.identity);
+            newTarget.transform.position = new Vector3(newTarget.transform.position.x, newTarget.transform.position.y, 100);
             newTarget.transform.parent = enemies;
             
             // Dodanie przerwy pomiedzy tworzeniem celow umozliwia sekwencyjnie ulozyc poziomy
@@ -104,6 +105,9 @@ public class SpawnTarget : MonoBehaviour
     IEnumerator FadeOut()
     {
         yield return new WaitForSeconds(2);
-        fadeAnimator.SetTrigger("fade_out");
+        if (!fadeAnimator.GetCurrentAnimatorStateInfo(0).IsName("fade_out"))
+        {
+            fadeAnimator.SetTrigger("fade_out");
+        }
     }
 }

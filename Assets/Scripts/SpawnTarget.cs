@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class SpawnTarget : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class SpawnTarget : MonoBehaviour
     private Vector2 targetPosition;
     private int roundNumber;
     private int currentLevel;
+    // Przejscie przez animacje rund zajmuje (okolo) siedem sekund, wiec tyle czeka program
+    private int roundCooldown;
     // Prefab celu i animacje przypisywane sa w edytorze 
     public List<GameObject> targets = new();
     public GameObject target;
@@ -31,11 +34,13 @@ public class SpawnTarget : MonoBehaviour
         // Wyswietl animacje przebiegu rundy
         if (roundNumber.Equals(0))
         {
-            popupAnimator.SetTrigger("round1");
-            StartCoroutine(FadeOut());
+            roundCooldown = 7;
+            popupAnimator.SetTrigger("versus");
+            StartCoroutine(Round1());
         }
         else
         {
+            roundCooldown = 3;
             fadeAnimator.SetTrigger("fade_in");
             popupAnimator.SetTrigger("round2");
             StartCoroutine(FadeOut());
@@ -66,16 +71,16 @@ public class SpawnTarget : MonoBehaviour
             case 2:
                 chosenLevel.Level2();
                 break;
-            //case 3:
+            case 3:
+                chosenLevel.Level3();
+                break;
             default:
-                Debug.Log("Glupcze, zaburzyles odwieczna rownowage czterystu wymiarow");
                 break;
         }
     }
     IEnumerator TargetSpawnerCoroutine()
     {
-        // Przejscie przez animacje rund zajmuje (okolo) trzy sekundy, wiec tyle czeka program
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(roundCooldown);
         for (int i = 0; i < targetAmount; i++)
         {
             // Pozycja celu okreslana jest recznie poprzez wpis do tabeli znajdujacej sie w klasie LevelData.cs
@@ -102,6 +107,12 @@ public class SpawnTarget : MonoBehaviour
         }
     }
 
+    IEnumerator Round1()
+    {
+        yield return new WaitForSeconds(4);
+        popupAnimator.SetTrigger("round1");
+        StartCoroutine(FadeOut());
+    }
     IEnumerator FadeOut()
     {
         yield return new WaitForSeconds(2);

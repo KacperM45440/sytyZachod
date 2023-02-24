@@ -18,14 +18,23 @@ public class ScoreScript : MonoBehaviour
     void Start()
     {
         Summarise();
-        input.characterLimit = 5;
-        ShuffleScores("?????");
+        if (score >= PlayerPrefs.GetInt("highscore_points7"))
+        {
+            input.characterLimit = 5;
+            ShuffleScores("?????");
+        }
+        else
+        {
+            input.transform.parent.gameObject.SetActive(false);
+            returnButton.SetActive(true);
+        }
     }
 
     private void Awake()
     {
         PopulateData();
         PrintScores();
+        changeScene.ChooseCursor("menuCrosshair");
     }
 
     private void Update()
@@ -90,7 +99,7 @@ public class ScoreScript : MonoBehaviour
         for (int i=0; i < 8; i++)
         {
             scoresTransform.GetChild(i).GetComponent<TMP_Text>().text = PlayerPrefs.GetString("highscore_name" + i);
-            scoresTransform.GetChild(i).transform.GetChild(0).GetComponent<TMP_Text>().text = PlayerPrefs.GetInt("highscore_points" + i).ToString();
+            scoresTransform.GetChild(i).transform.GetChild(0).GetComponent<TMP_Text>().text = PlayerPrefs.GetInt("highscore_points" + i).ToString("D6");
         }
     }
 

@@ -46,6 +46,7 @@ public class WinCheck : MonoBehaviour
         score = PlayerPrefs.GetInt("currentScore");
         scoreCounter.text = score.ToString("D6");
         isPaused = false;
+        changeScene.ChooseCursor("crosshairShooting");
 
         if (_instance != null && _instance != this)
         {
@@ -211,6 +212,7 @@ public class WinCheck : MonoBehaviour
         progressUI.SetActive(false);
         finisherUI.SetActive(true);
         uiAnimatorRef.SetTrigger("roll_up");
+        changeScene.ChooseCursor("fistCrosshair");
 
         // Poczekaj na zakonczenie etapu, a nastepnie przyznaj dodatkowe punkty za pokonanie przeciwnika
         yield return new WaitForSeconds(0.25f);
@@ -221,6 +223,7 @@ public class WinCheck : MonoBehaviour
         gunRef.readyToFire = false;
 
         backgroundRef.KillEnemy();
+        changeScene.ChooseCursor("crosshairShooting");
         Unpause();
         yield return new WaitForSeconds(1f);
         fadeAnimatorRef.SetTrigger("fade_in");

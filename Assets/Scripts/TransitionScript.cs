@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class TransitionScript : MonoBehaviour
 {
+    public Texture2D fistCrosshair;
+    public Texture2D crosshairShooting;
+    public Texture2D menuCrosshair;
+    private Vector2 cursorHotspot;
     private float transitionTime = 1.25f;
     private int sceneNumber;
     public Animator animatorRef;
@@ -40,6 +44,25 @@ public class TransitionScript : MonoBehaviour
     {
         sceneNumber = SceneManager.GetActiveScene().buildIndex;
         StartCoroutine(LoadLevel(sceneNumber));
+    }
+
+    public void ChooseCursor(string whichOne)
+    {
+        if (whichOne.Equals("fistCrosshair"))
+        {
+            cursorHotspot = new Vector2(fistCrosshair.width / 2, fistCrosshair.height / 2);
+            Cursor.SetCursor(fistCrosshair, cursorHotspot, CursorMode.Auto);
+        }
+        if (whichOne.Equals("crosshairShooting"))
+        {
+            cursorHotspot = new Vector2(crosshairShooting.width / 2, crosshairShooting.height / 2);
+            Cursor.SetCursor(crosshairShooting, cursorHotspot, CursorMode.Auto);
+        }
+        if (whichOne.Equals("menuCrosshair"))
+        {
+            cursorHotspot = new Vector2(0,0);
+            Cursor.SetCursor(menuCrosshair, cursorHotspot, CursorMode.Auto);
+        } 
     }
     IEnumerator LoadLevel(int levelIndex)
     {

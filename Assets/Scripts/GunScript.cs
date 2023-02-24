@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEditor;
 using System;
 
@@ -21,6 +22,11 @@ public class GunScript : MonoBehaviour
     int currentAmmo;
     int maxAmmo = 6;
     float reloadTime = 1.25f;
+
+    public AudioSource shotSource;
+    public AudioSource reloadSource;
+    //public AudioMixer musicMixer;
+    //public AudioMixer soundFXMixer;
 
     void Start()
     {
@@ -60,6 +66,8 @@ public class GunScript : MonoBehaviour
         // Funckja ma charakter nadzorczy (samej broni), niszczeniem celu zajmuje sie juz jego klasa "TargetMovement"
         if (readyToFire)
         {
+            shotSource.Play();
+            //soundFXMixer.SetFloat("SoundFXVolume", 0f);
             currentAmmo--;
             animatorRef.SetTrigger("Rotate Single");
             DestroyBullet();
@@ -115,7 +123,8 @@ public class GunScript : MonoBehaviour
 
         cylinderBody.localEulerAngles = SpawnMag.Instance.originalRotation;
         animatorRef.SetTrigger("Full Rotate");
-        
+        reloadSource.Play();
+
         yield return new WaitForSeconds(reloadTime);
         SpawnMag.Instance.NewMagazine();
         currentMagazine = GameObject.Find("Magazine(Clone)");

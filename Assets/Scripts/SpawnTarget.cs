@@ -23,6 +23,7 @@ public class SpawnTarget : MonoBehaviour
     public bool canPunch;
     public float levelSpeed;
     public int targetAmount;
+    public AudioSource bellSource;
 
     void Start()
     {
@@ -43,6 +44,7 @@ public class SpawnTarget : MonoBehaviour
             roundCooldown = 3;
             fadeAnimator.SetTrigger("fade_in");
             popupAnimator.SetTrigger("round2");
+            bellSource.PlayDelayed(0.25f);
             StartCoroutine(FadeOut());
         }
     }
@@ -111,6 +113,7 @@ public class SpawnTarget : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
         popupAnimator.SetTrigger("round1");
+        bellSource.PlayDelayed(0.75f);
         StartCoroutine(FadeOut());
     }
     IEnumerator FadeOut()

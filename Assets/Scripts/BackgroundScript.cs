@@ -14,6 +14,9 @@ public class BackgroundScript : MonoBehaviour
     public Sprite enemyPunched1;
     public Sprite enemyPunched2;
     public Sprite enemyPunched3;
+    public AudioSource punchSource1;
+    public AudioSource punchSource2;
+    public AudioSource punchSource3;
 
     public bool dominated;
     public bool canPunch;
@@ -63,16 +66,19 @@ public class BackgroundScript : MonoBehaviour
         if (i.Equals(1))
         {
             rendererRef.sprite = enemyPunched1;
+            punchSource1.Play();
             previousAnim = i;
         }
         else if (i.Equals(2))
         {
             rendererRef.sprite = enemyPunched2;
+            punchSource2.Play();
             previousAnim = i;
         }
         else
         {
             rendererRef.sprite = enemyPunched3;
+            punchSource3.Play();
             previousAnim = i;
         }
 

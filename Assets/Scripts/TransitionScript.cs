@@ -23,6 +23,7 @@ public class TransitionScript : MonoBehaviour
             animatorRef.SetTrigger("Ended");
         }
     }
+
     public void PlayGame()
     {
         PlayerPrefs.SetInt("currentScore", 0);

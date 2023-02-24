@@ -8,12 +8,15 @@ public class TargetMovement : MonoBehaviour
     [HideInInspector] public float speed;
     private GunScript gun;
     private int life;
+    private int i;
     public GameObject kontroler;
     public Transform destroyQueue;
     private Transform child;
     private GameObject shards;
     private Animator shardAnimator;
     public List<string> animations = new();
+    public AudioSource breakSource1;
+    public AudioSource breakSource2;
 
     void Start()
     {
@@ -70,9 +73,20 @@ public class TargetMovement : MonoBehaviour
     {
         shards.transform.SetPositionAndRotation(transform.position, transform.rotation);
         shards.SetActive(true);
-        shardAnimator.SetTrigger("shard_fade");
 
+        i = Random.Range(1, 3);
+
+        if (i.Equals(1))
+        {
+            breakSource1.Play();
+        }
+        else
+        {
+            breakSource2.Play();
+        }
+        shardAnimator.SetTrigger("shard_fade");
         shards.transform.parent = destroyQueue;
+
         for (int i = 0; i < 9; i++)
         {
             child = shards.transform.GetChild(i);
@@ -80,9 +94,11 @@ public class TargetMovement : MonoBehaviour
             child.GetComponent<Rigidbody2D>().AddForce(new Vector2(UnityEngine.Random.Range(-250, 250), 300));
         }
 
+
         transform.GetComponent<SpriteRenderer>().enabled = false;
         transform.GetComponent<CircleCollider2D>().enabled = false;
         shards.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+
         yield return new WaitForSecondsRealtime(0);
         Destroy(transform.parent.gameObject);
     }

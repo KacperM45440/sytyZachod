@@ -17,6 +17,8 @@ public class ScoreScript : MonoBehaviour
 
     void Start()
     {
+        // Jezeli gracz zdobyl wystarczajaco punktow by zalapac sie na tabele wynikow, daj mu wprowadzic swoje imie.
+        // W przeciwnym wypadku, daj mu tylko mozliwosc powrotu do menu
         Summarise();
         if (score >= PlayerPrefs.GetInt("highscore_points7"))
         {
@@ -39,10 +41,13 @@ public class ScoreScript : MonoBehaviour
 
     private void Update()
     {
+        // Zeby nie trzeba bylo klikac w slabo widoczne pole tekstowe, jest ono zawsze aktywne, wystarczy zaczac pisac
         input.ActivateInputField();
     }
     public void Summarise()
     {
+        // Przekaz wynik z gry. 
+        // Jezeli jest null, ustaw go na 0. Nie powinien byc nigdy null, jest to pozostalosc kodu z debugowania
         try
         {
             score = WinCheck.Instance.score;
@@ -50,12 +55,14 @@ public class ScoreScript : MonoBehaviour
         catch (Exception ex)
         {
             Debug.Log(ex, this);
-            score = 45000;
+            score = 0;
         }
     }    
 
     public void PopulateData()
     {
+        // Zapelnij jednorazowo tablice sztucznymi wynikami. Dzieki temu nie jest ona pusta, a gracz ma z czym rywalizowac
+
         if (PlayerPrefs.HasKey("donePopulating").Equals(false))
         {
             PlayerPrefs.SetString("highscore_name0", "PABLO");
@@ -83,6 +90,8 @@ public class ScoreScript : MonoBehaviour
 
     public void SubmitName()
     {
+        // Wprowadzone imie nie moze byc puste.
+        // Dodane imie zostaje zastepione w tabeli, nastepnie odblokowywana jest mozliwosc powrotu do menu
         scoreFound = false;
         givenName = input.text;
         if (!givenName.Equals(""))
@@ -91,11 +100,11 @@ public class ScoreScript : MonoBehaviour
             input.transform.parent.gameObject.SetActive(false);
             returnButton.SetActive(true);
         }
-
     }
 
     public void PrintScores()
     {
+        // Wypisz graficznie zapisane wyniki
         for (int i=0; i < 8; i++)
         {
             scoresTransform.GetChild(i).GetComponent<TMP_Text>().text = PlayerPrefs.GetString("highscore_name" + i);
@@ -105,6 +114,11 @@ public class ScoreScript : MonoBehaviour
 
     public void ShuffleScores(string name)
     {
+        // Gra sprawdza, czy wynik jest wystarczajaco wysoki na to, aby znalezc sie na tabeli wynikow, porownujac go z wpisami.
+        // Jezeli tak, to blokuje mozliwosc dalszego porownywania (aby nie wpisywac tego samego wyniku wiele razy)
+        // Wszystkie obecne wyniki znajdujace sie pod obecnym wynikiem zostaja przesuniete miejscami o jeden w dol
+        // Nastepnie tablica wypisywana jest od nowa
+
         for (int i=0; i < 8; i++)
         {
             if (score >= PlayerPrefs.GetInt("highscore_points" + i) && !scoreFound)
@@ -126,6 +140,7 @@ public class ScoreScript : MonoBehaviour
         PrintScores();
     }
 
+    // Zresetuj obecny wynik, wroc do menu glownego
     public void ThisIsTheEnd()
     {
          score = 0;

@@ -14,6 +14,7 @@ public class SpawnMag : MonoBehaviour
 
     private void Awake()
     {
+        // Magazynek moze byc tylko jeden
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
@@ -23,10 +24,10 @@ public class SpawnMag : MonoBehaviour
             _instance = this;
         }
 
+        // Zapisz i przekaz obrot tak, aby pociski znajdowaly sie w dobrym miejscu w cylindrze
         cylinder = transform;
         originalRotation = cylinder.localEulerAngles;
         NewMagazine();
-
     }
 
     public void NewMagazine()

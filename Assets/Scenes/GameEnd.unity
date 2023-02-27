@@ -3234,7 +3234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2137d09292aa5046b90375688b98694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSource: {fileID: 1508140602}
+  menuMusicSource: {fileID: 1508140602}
 --- !u!4 &1508140604
 Transform:
   m_ObjectHideFlags: 0

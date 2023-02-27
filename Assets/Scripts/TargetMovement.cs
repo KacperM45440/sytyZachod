@@ -68,7 +68,9 @@ public class TargetMovement : MonoBehaviour
         Destroy(transform.parent.gameObject);
     }
 
-    // Cel zosta³ klikniêty, wiêc gra animacjê "zniszczenia"
+    // Cel zosta³ klikniêty, wiêc gra animacjê "zniszczenia" oraz wydaje z siebie dzwiek.
+    // Po celu zostaja roztrzaskane fragmenty, ktore zmniejszaja sie a nastepnie znikaja.
+    // Maja one podobna logike do luskach po pociskach, patrz: GunScript::80
     IEnumerator DestroyMe()
     {
         shards.transform.SetPositionAndRotation(transform.position, transform.rotation);

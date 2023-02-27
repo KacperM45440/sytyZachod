@@ -32,7 +32,7 @@ public class SpawnTarget : MonoBehaviour
 
     private void RoundPopup()
     {
-        // Wyswietl animacje przebiegu rundy
+        // Wyswietl plansze obecnego przeciwnika, nastepnie wywolaj animacje przebiegu rundy
         if (roundNumber.Equals(0))
         {
             roundCooldown = 7;
@@ -50,6 +50,7 @@ public class SpawnTarget : MonoBehaviour
     }
     public void InitialiseLevel()
     {
+        // Animacja rundy
         RoundPopup();
 
         // Za³aduj dane celów z poziomu, nadaj odpowiednia im predkosc a nastepnie rozpocznij proces tworzenia celów w grze
@@ -64,6 +65,7 @@ public class SpawnTarget : MonoBehaviour
 
     public void ChooseLevel()
     {
+        // Wybierz uklad celow zaleznie od tego na ktorym obecnie znajdujemy sie poziomie
         currentLevel = SceneManager.GetActiveScene().buildIndex;
         switch (currentLevel)
         {
@@ -95,6 +97,7 @@ public class SpawnTarget : MonoBehaviour
             // Dodanie przerwy pomiedzy tworzeniem celow umozliwia sekwencyjnie ulozyc poziomy
             yield return new WaitForSeconds(chosenLevel.finishedTable[i].delay);
         }
+        // Runda konczy sie kiedy wszystkie cele sie pojawia oraz wszystkie znikna
         yield return new WaitUntil(() => enemies.childCount.Equals(1));
         
         roundNumber++;

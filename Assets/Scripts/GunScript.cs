@@ -25,8 +25,6 @@ public class GunScript : MonoBehaviour
 
     public AudioSource shotSource;
     public AudioSource reloadSource;
-    //public AudioMixer musicMixer;
-    //public AudioMixer soundFXMixer;
 
     void Start()
     {
@@ -67,7 +65,6 @@ public class GunScript : MonoBehaviour
         if (readyToFire)
         {
             shotSource.Play();
-            //soundFXMixer.SetFloat("SoundFXVolume", 0f);
             currentAmmo--;
             animatorRef.SetTrigger("Rotate Single");
             DestroyBullet();

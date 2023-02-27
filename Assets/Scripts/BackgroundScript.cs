@@ -10,13 +10,15 @@ public class BackgroundScript : MonoBehaviour
     private SpriteRenderer rendererRef;
     public WinCheck winCheckRef;
     public Slider finisherBar;
-    public Sprite enemyDead;
+    public Sprite enemyDeadSprite;
     public Sprite enemyPunched1;
     public Sprite enemyPunched2;
     public Sprite enemyPunched3;
+    public AudioSource enemyDeathSound;
     public AudioSource punchSource1;
     public AudioSource punchSource2;
     public AudioSource punchSource3;
+    
 
     public bool dominated;
     public bool canPunch;
@@ -45,12 +47,13 @@ public class BackgroundScript : MonoBehaviour
             // W etapie bonusowym, z zalozenia mozna klikac nieskonczonosc razy, dlatego nie ma koniecznosci podpinania (i konfigurowania) go pod system strzelania
             if (canPunch)
             {
-                EnemyPunched();
-                
+                EnemyPunched();              
             }
         }
     }
 
+
+    // Przy uderzeniu, losowo wybierz animacje pobicia. Nie moze byc ona taka sama jak poprzednia
     public void EnemyPunched()
     {
         winCheckRef.DominationPunch();
@@ -110,16 +113,20 @@ public class BackgroundScript : MonoBehaviour
     }
     public void KillEnemy()
     {
+        // Zagraj animacje zabicia przeciwnika
         enemyAnimator.SetTrigger("dead");
-        rendererRef.sprite = enemyDead;
+        enemyDeathSound.Play();
+        rendererRef.sprite = enemyDeadSprite;
     }
     IEnumerator Timer()
     {
+        // Odmierz 5 sekund etapu bonusowego, po tym czasie zablokuj mozliwosc bicia
         yield return new WaitForSeconds(5);
         canPunch = false;
     }
     IEnumerator DrainBar()
     {
+        // Zaktualizuj wizualnie stan poziomu bonusowego na pasku
         for (int i=0; i<5; i++)
         {
             yield return new WaitForSeconds(1);

@@ -60,6 +60,8 @@ public class WinCheck : MonoBehaviour
 
     private void Update()
     {
+        // W dowolnym miejscu w grze mozna wyjsc do menu glownego
+        // Zarowno wyjscie do menu jak zresetowanie poziomu wiaze sie z wyzerowaniem wyniku
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             CheckPause();
@@ -79,6 +81,7 @@ public class WinCheck : MonoBehaviour
     }
     public void PauseGame()
     {
+        // W menu pauzy zabierana jest mozliwosc strzalu aby nie marnowac pociskow przy kliknieciu
         isPaused = true;
         gunRef.readyToFire = false;
         fadeAnimatorRef.SetTrigger("fade_in");
@@ -106,6 +109,8 @@ public class WinCheck : MonoBehaviour
 
     public void EnemyCheck()
     {
+        // Gdy zestrzelony jest cel, przeciwnik gra animacje bolu
+        // Sprawdzane jest rowniez, czy zostalo zestrzelone wystarczajaco celow aby podmienic mu obrazek na bardziej zmeczony, zaznaczajac tym samym postep poziomu
         enemyAnimatorRef.SetTrigger("hurt");
         if (targetCounter >= maxScore * 0.6f && targetCounter < maxScore * 0.8f)
         {
@@ -132,9 +137,6 @@ public class WinCheck : MonoBehaviour
     }    
 
     // Sprawdz, czy gracz wygral w gre. 
-    //
-    // Todo: 
-    // 3. Po wygranej, przekierowac na animacje zwyciestwa nad przeciwnikiem, nastepnie zmiana sceny/poziomu
     public void Checker() 
     {
         if (targetCounter >= maxScore * 0.6f && targetCounter < maxScore * 0.8f)
@@ -175,6 +177,7 @@ public class WinCheck : MonoBehaviour
     {
         score = 0;
         PlayerPrefs.SetInt("currentScore", score);
+        GameMusicScript.Instance.FadeOut();
         changeScene.MainMenu();
     }
 
@@ -193,6 +196,7 @@ public class WinCheck : MonoBehaviour
     }
     IEnumerator Completed()
     {
+        // W przypadku zwyklej wygranej nie przechodzimy do etapu bonusowego, a bezposrednio do nastepnego poziomu
         score += 5000;
         scoreCounter.text = score.ToString("D6");
         gunRef.readyToFire = false;
@@ -222,6 +226,7 @@ public class WinCheck : MonoBehaviour
         scoreCounter.text = score.ToString("D6");
         gunRef.readyToFire = false;
 
+        // Zagraj animacje pokonanego przeciwnika, animacje wygrania etapu a nastepnie zmien poziom na nastepny
         backgroundRef.KillEnemy();
         changeScene.ChooseCursor("crosshairShooting");
         Unpause();

@@ -14,8 +14,8 @@ public class TransitionScript : MonoBehaviour
     public Animator animatorRef;
     public bool startRn;
 
-    // Ta klasa odpowiedzialna jest za przyciemnienie oraz rozjasnienie ekranu kiedy gra przelacza pomiedzy dwoma scenami
-
+    // Ta klasa odpowiedzialna jest za przyciemnienie oraz rozjasnienie ekranu kiedy gra przelacza pomiedzy dwoma scenami.
+    // Dodatkowo, zaleznie od sceny, zmieniane sa kursory na atrakcyjniejsze niz systemowy
     private void Start()
     {
         if (startRn)

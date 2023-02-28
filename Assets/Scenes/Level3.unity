@@ -796,7 +796,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 19b2b9297c398b742b66269fdc5b7ab1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f880e7041f3b5284ab652cbbd3432fa1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1464,7 +1464,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 47, y: 0}
+  m_AnchoredPosition: {x: 48, y: 0}
   m_SizeDelta: {x: 0.29, y: 0.69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &562109472
@@ -1642,10 +1642,10 @@ MonoBehaviour:
   gunController: {fileID: 1072985835}
   winCheckRef: {fileID: 1072985837}
   finisherBar: {fileID: 529215116}
-  enemyDeadSprite: {fileID: 21300000, guid: 520d1988a2eee7544bc398fdd9a35652, type: 3}
-  enemyPunched1: {fileID: 21300000, guid: 202947bd4d13e0d43bba08e934cc5fad, type: 3}
-  enemyPunched2: {fileID: 21300000, guid: 0fa5bca242bb60341b57234570c98019, type: 3}
-  enemyPunched3: {fileID: 21300000, guid: 6f94ca0e2efdb2b4a987d291c5fe8dba, type: 3}
+  enemyDeadSprite: {fileID: 21300000, guid: 0096569ac340ffe4da1fe39d0b177d0e, type: 3}
+  enemyPunched1: {fileID: 21300000, guid: d10a88de7f074df4c953f7419037ee66, type: 3}
+  enemyPunched2: {fileID: 21300000, guid: 75a5649c09e1e964d9cc01b4c9418b23, type: 3}
+  enemyPunched3: {fileID: 21300000, guid: 295778de5304b0b4fb2af742cd6b2fa1, type: 3}
   enemyDeathSound: {fileID: 798314622}
   punchSource1: {fileID: 606154042}
   punchSource2: {fileID: 606154041}
@@ -2126,7 +2126,7 @@ GameObject:
   - component: {fileID: 798314621}
   - component: {fileID: 798314622}
   m_Layer: 0
-  m_Name: pablo
+  m_Name: jacek
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2188,7 +2188,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9b43f00aef65c8a45a59f99c620f095a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c2b17e701ffefc54987dfe9eb1187098, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2761,8 +2761,8 @@ MonoBehaviour:
   finisherUI: {fileID: 529215114}
   gunRef: {fileID: 1072985836}
   scoreBar: {fileID: 1220328898}
-  enemyTired: {fileID: 21300000, guid: 4410817495df33949b15f473f21ca28f, type: 3}
-  enemyDominated: {fileID: 21300000, guid: 04e8d38bcb098d24abd67962c1bb3905, type: 3}
+  enemyTired: {fileID: 21300000, guid: 84082954f8c1d884b980e8b412a7b3f7, type: 3}
+  enemyDominated: {fileID: 21300000, guid: c47f0acfec7070b429c0328c1acc9dd5, type: 3}
   enemySprite: {fileID: 798314620}
   spawnRef: {fileID: 1897651783}
   comboCounter: {fileID: 13384947}
@@ -3917,7 +3917,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16, y: 0}
+  m_AnchoredPosition: {x: 17, y: 0}
   m_SizeDelta: {x: 0.29, y: 0.69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1422292878

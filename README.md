@@ -1,5 +1,8 @@
-![syteLogo](https://user-images.githubusercontent.com/104095161/221516375-603ef9ea-fad6-4fba-a155-6ba444896a74.png)
 # Syty Zachód
+# https://kacperm45440.itch.io/syty-zachd
+
+![syteLogo](https://user-images.githubusercontent.com/104095161/221516375-603ef9ea-fad6-4fba-a155-6ba444896a74.png)
+
 Syty Zachód - zręcznościowa gra komputerowa o warzywach (i nie tylko) na dzikim zachodzie. Stworzona w silniku Unity, napisana w C#.
 
 # Dlaczego ten projekt powstał?
